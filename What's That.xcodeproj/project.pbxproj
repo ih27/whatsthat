@@ -22,6 +22,7 @@
 		D011DA051FB12C28002F95D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D011DA081FB12C28002F95D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D011DA0A1FB12C28002F95D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D071EBFC1FB22A0900A65760 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +55,12 @@
 		D011D9FD1FB12C28002F95D7 /* What's That */ = {
 			isa = PBXGroup;
 			children = (
-				D011DA121FB12FD9002F95D7 /* controllers */,
-				D011DA111FB12FCD002F95D7 /* utilities */,
+				D071EBFB1FB229C900A65760 /* views */,
+				D011DA121FB12FD9002F95D7 /* view controllers */,
+				D011DA111FB12FCD002F95D7 /* utils */,
 				D011DA101FB12FB8002F95D7 /* models */,
-				D011D9FE1FB12C28002F95D7 /* AppDelegate.swift */,
-				D011DA021FB12C28002F95D7 /* Main.storyboard */,
-				D011DA051FB12C28002F95D7 /* Assets.xcassets */,
-				D011DA071FB12C28002F95D7 /* LaunchScreen.storyboard */,
 				D011DA0A1FB12C28002F95D7 /* Info.plist */,
+				D071EBFC1FB22A0900A65760 /* README.md */,
 			);
 			path = "What's That";
 			sourceTree = "<group>";
@@ -73,19 +72,30 @@
 			path = models;
 			sourceTree = "<group>";
 		};
-		D011DA111FB12FCD002F95D7 /* utilities */ = {
+		D011DA111FB12FCD002F95D7 /* utils */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = utilities;
+			path = utils;
 			sourceTree = "<group>";
 		};
-		D011DA121FB12FD9002F95D7 /* controllers */ = {
+		D011DA121FB12FD9002F95D7 /* view controllers */ = {
 			isa = PBXGroup;
 			children = (
 				D011DA001FB12C28002F95D7 /* MenuViewController.swift */,
 			);
-			path = controllers;
+			path = "view controllers";
+			sourceTree = "<group>";
+		};
+		D071EBFB1FB229C900A65760 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				D011D9FE1FB12C28002F95D7 /* AppDelegate.swift */,
+				D011DA021FB12C28002F95D7 /* Main.storyboard */,
+				D011DA051FB12C28002F95D7 /* Assets.xcassets */,
+				D011DA071FB12C28002F95D7 /* LaunchScreen.storyboard */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
