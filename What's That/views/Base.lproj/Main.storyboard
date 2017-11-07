@@ -26,15 +26,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glK-pi-6q2">
+                                <rect key="frame" x="135" y="427" width="105" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Use Camera">
+                                    <color key="titleColor" red="0.96478992700576782" green="0.57065343856811523" blue="0.12431441992521286" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r92-Qc-x4u">
+                                <rect key="frame" x="149" y="512" width="77" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Favorites">
+                                    <color key="titleColor" red="0.96478992699999999" green="0.57065343859999995" blue="0.1243144199" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EzH-lh-0QC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="31k-RT-SOG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EzH-lh-0QC" secondAttribute="trailing" id="4Jk-98-Zs7"/>
+                            <constraint firstItem="r92-Qc-x4u" firstAttribute="top" secondItem="glK-pi-6q2" secondAttribute="bottom" constant="50" id="GHg-II-Hhq"/>
                             <constraint firstItem="EzH-lh-0QC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="HL4-cx-0ba"/>
                             <constraint firstItem="bSK-vo-xt6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-5" id="MaB-76-1mv"/>
                             <constraint firstItem="bSK-vo-xt6" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-5" id="NDm-l0-bi1"/>
+                            <constraint firstItem="glK-pi-6q2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TWK-Z2-oMl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r92-Qc-x4u" secondAttribute="bottom" constant="120" id="YEY-lo-ZTk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EzH-lh-0QC" secondAttribute="bottom" id="gKl-p3-tWv"/>
+                            <constraint firstItem="r92-Qc-x4u" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hFU-8R-9By"/>
                             <constraint firstItem="bSK-vo-xt6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="yZ2-8z-Jo1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
