@@ -39,6 +39,7 @@
 		D011D9F21FB12C28002F95D7 = {
 			isa = PBXGroup;
 			children = (
+				D071EBFC1FB22A0900A65760 /* README.md */,
 				D011D9FD1FB12C28002F95D7 /* What's That */,
 				D011D9FC1FB12C28002F95D7 /* Products */,
 			);
@@ -60,7 +61,6 @@
 				D011DA111FB12FCD002F95D7 /* utils */,
 				D011DA101FB12FB8002F95D7 /* models */,
 				D011DA0A1FB12C28002F95D7 /* Info.plist */,
-				D071EBFC1FB22A0900A65760 /* README.md */,
 			);
 			path = "What's That";
 			sourceTree = "<group>";
