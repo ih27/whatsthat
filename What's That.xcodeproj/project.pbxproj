@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D011D9FF1FB12C28002F95D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011D9FE1FB12C28002F95D7 /* AppDelegate.swift */; };
-		D011DA011FB12C28002F95D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011DA001FB12C28002F95D7 /* ViewController.swift */; };
+		D011DA011FB12C28002F95D7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011DA001FB12C28002F95D7 /* MenuViewController.swift */; };
 		D011DA041FB12C28002F95D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D011DA021FB12C28002F95D7 /* Main.storyboard */; };
 		D011DA061FB12C28002F95D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D011DA051FB12C28002F95D7 /* Assets.xcassets */; };
 		D011DA091FB12C28002F95D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D011DA071FB12C28002F95D7 /* LaunchScreen.storyboard */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		D011D9FB1FB12C28002F95D7 /* What's That.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What's That.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D011D9FE1FB12C28002F95D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D011DA001FB12C28002F95D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D011DA001FB12C28002F95D7 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D011DA031FB12C28002F95D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D011DA051FB12C28002F95D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D011DA081FB12C28002F95D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,14 +54,38 @@
 		D011D9FD1FB12C28002F95D7 /* What's That */ = {
 			isa = PBXGroup;
 			children = (
+				D011DA121FB12FD9002F95D7 /* controllers */,
+				D011DA111FB12FCD002F95D7 /* utilities */,
+				D011DA101FB12FB8002F95D7 /* models */,
 				D011D9FE1FB12C28002F95D7 /* AppDelegate.swift */,
-				D011DA001FB12C28002F95D7 /* ViewController.swift */,
 				D011DA021FB12C28002F95D7 /* Main.storyboard */,
 				D011DA051FB12C28002F95D7 /* Assets.xcassets */,
 				D011DA071FB12C28002F95D7 /* LaunchScreen.storyboard */,
 				D011DA0A1FB12C28002F95D7 /* Info.plist */,
 			);
 			path = "What's That";
+			sourceTree = "<group>";
+		};
+		D011DA101FB12FB8002F95D7 /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		D011DA111FB12FCD002F95D7 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+		D011DA121FB12FD9002F95D7 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D011DA001FB12C28002F95D7 /* MenuViewController.swift */,
+			);
+			path = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D011DA011FB12C28002F95D7 /* ViewController.swift in Sources */,
+				D011DA011FB12C28002F95D7 /* MenuViewController.swift in Sources */,
 				D011D9FF1FB12C28002F95D7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,7 +302,7 @@
 				DEVELOPMENT_TEAM = V97ZQFVX96;
 				INFOPLIST_FILE = "What's That/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.gwu.What-s-That";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.gwu.Whats-That";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -293,7 +317,7 @@
 				DEVELOPMENT_TEAM = V97ZQFVX96;
 				INFOPLIST_FILE = "What's That/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.gwu.What-s-That";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.gwu.Whats-That";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
