@@ -12,6 +12,7 @@
 		D011DA041FB12C28002F95D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D011DA021FB12C28002F95D7 /* Main.storyboard */; };
 		D011DA061FB12C28002F95D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D011DA051FB12C28002F95D7 /* Assets.xcassets */; };
 		D011DA091FB12C28002F95D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D011DA071FB12C28002F95D7 /* LaunchScreen.storyboard */; };
+		D0A78B361FB3A03F00A1EB42 /* SnapSelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A78B351FB3A03F00A1EB42 /* SnapSelectPhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		D011DA081FB12C28002F95D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D011DA0A1FB12C28002F95D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D071EBFC1FB22A0900A65760 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D0A78B351FB3A03F00A1EB42 /* SnapSelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapSelectPhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				D011DA001FB12C28002F95D7 /* MenuViewController.swift */,
+				D0A78B351FB3A03F00A1EB42 /* SnapSelectPhotoViewController.swift */,
 			);
 			path = "view controllers";
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D011DA011FB12C28002F95D7 /* MenuViewController.swift in Sources */,
+				D0A78B361FB3A03F00A1EB42 /* SnapSelectPhotoViewController.swift in Sources */,
 				D011D9FF1FB12C28002F95D7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
