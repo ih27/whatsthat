@@ -14,25 +14,43 @@ class PhotoIdentificationViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    // A variable to set the source segue
+    var source = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestPhotoLibraryPermissionsIfNeeded()
-        
-        // iPad related stuff
-//        imagePicker.modalPresentationStyle = .popover
-//        imagePicker.popoverPresentationController?.delegate = self
-//        imagePicker.popoverPresentationController?.sourceView = view
-        
-//        let cameraMediaType = AVMediaType.video
-//        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
-        
-        
-//        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
-//            present(imagePicker, animated: true, completion: nil)
-//        }
+        // Depending on the source, request the necessary permissions
+        if source == "Camera" {
+            requestCameraPermissionsIfNeeded()
+        } else {
+            requestPhotoLibraryPermissionsIfNeeded()
+        }
     }
     
+    // Camera access request
+    func requestCameraPermissionsIfNeeded() {
+        let cameraMediaType = AVMediaType.video
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
+        if cameraAuthorizationStatus == .authorized {
+            // Access is granted by user
+            snapPhoto()
+        } else {
+            // Access is still not granted
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+                if response {
+                    // Access is granted by user
+                    self.snapPhoto()
+                } else {
+                    // User need to be directed to the app settings
+                    let message = "You need to turn the Camera access on"
+                    self.displayPermissionAlert(with: message)
+                }
+            }
+        }
+    }
+    
+    // Photo library permissions request
     func requestPhotoLibraryPermissionsIfNeeded() {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         if photoAuthorizationStatus == .authorized {
@@ -46,9 +64,28 @@ class PhotoIdentificationViewController: UIViewController {
                     self.selectPhotoFromLibrary()
                 } else {
                     // User need to be directed to the app settings
-                    self.displayPermissionAlert()
+                    let message = "You need to give \"Read and Write\" access in Photos"
+                    self.displayPermissionAlert(with: message)
                 }
             })
+        }
+    }
+    
+    // Present the camera image picker to snap a photo
+    func snapPhoto() {
+        // Set the camera image picker
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.delegate = self
+        
+        // iPad related stuff
+        //imagePicker.modalPresentationStyle = .popover
+        //imagePicker.popoverPresentationController?.delegate = self
+        //imagePicker.popoverPresentationController?.sourceView = view
+        
+        // Make sure the camera is available
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            present(imagePicker, animated: true, completion: nil)
         }
     }
     
@@ -62,8 +99,7 @@ class PhotoIdentificationViewController: UIViewController {
     }
     
     // Display an alert trying to direct users to Settings
-    func displayPermissionAlert() {
-        let message = "You need to give \"Read and Write\" access in Photos"
+    func displayPermissionAlert(with message: String) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         // Setting button action
@@ -101,7 +137,6 @@ class PhotoIdentificationViewController: UIViewController {
 // Implement image picker delegate functions
 extension PhotoIdentificationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
         // Leave the view
@@ -110,7 +145,6 @@ extension PhotoIdentificationViewController: UIImagePickerControllerDelegate, UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            // Original image related processing here
             imageView.image = originalImage
         }
         picker.dismiss(animated: true, completion: nil)

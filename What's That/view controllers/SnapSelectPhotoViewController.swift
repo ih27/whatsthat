@@ -13,5 +13,10 @@ class SnapSelectPhotoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! PhotoIdentificationViewController
+        // Only two possible segues, and both have an identifier
+        vc.source = segue.identifier!
+    }
 }

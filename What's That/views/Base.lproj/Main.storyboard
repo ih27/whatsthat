@@ -113,6 +113,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="KlI-a3-LN9" kind="show" identifier="Camera" id="CL5-1o-NYM"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="RVE-cl-8jX" style="IBUITableViewCellStyleDefault" id="xLa-kA-6UG">
                                         <rect key="frame" x="0.0" y="79" width="375" height="44"/>
@@ -131,7 +134,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="KlI-a3-LN9" kind="show" id="nDk-md-Ic7"/>
+                                            <segue destination="KlI-a3-LN9" kind="show" identifier="PhotoLibrary" id="nDk-md-Ic7"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -156,7 +159,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q0w-xA-YoQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q0w-xA-YoQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tgN-bg-cEq">
@@ -190,4 +193,7 @@
     <resources>
         <image name="background" width="320" height="533"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="CL5-1o-NYM"/>
+    </inferredMetricsTieBreakers>
 </document>
