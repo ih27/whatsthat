@@ -11,14 +11,22 @@ import AVFoundation
 import Photos
 
 class PhotoIdentificationViewController: UIViewController {
-    
+    // Interface Builder outlets
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    // A variable to hold Google Vision API results
+    var results = [GoogleVisionResult]()
     
     // A variable to set the source segue
     var source = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set the necessary delegates for the table view
+        tableView.delegate = self
+        tableView.dataSource = self
         
         // Depending on the source, request the necessary permissions
         if source == "Camera" {
@@ -132,21 +140,67 @@ class PhotoIdentificationViewController: UIViewController {
         // Present the alert
         present(ac, animated: true)
     }
+    
+    // Fetch results with the help of GoogleVisionAPIManager
+    private func fetchResults(for image: UIImage) {
+        let manager = GoogleVisionAPIManager()
+        manager.fetchIdentifications(for: image)
+    }
 }
 
 // Implement image picker delegate functions
 extension PhotoIdentificationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // Cancel button tapped
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
         // Leave the view
         navigationController?.popViewController(animated: false)
     }
     
+    // Image chosen
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = originalImage
+            fetchResults(for: originalImage)
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+// Implement table view delegate functions
+extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewDelegate {
+    // Disable the section header by setting the heigh to minimum
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    // Number of rows in the table
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return results.count
+    }
+    
+    // Set the text for each cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "identifiedObjectCell", for: indexPath)
+        cell.textLabel?.text = "\(results[indexPath.row])"
+        
+        return cell
+    }    
+}
+
+// Implement GoogleVisionAPIManager delegate functions
+extension PhotoIdentificationViewController: GoogleVisionDelegate {
+    func resultsFound(_ results: [GoogleVisionResult]) {
+        self.results = results
+        
+        // Run in the main thread
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func resultsNotFound() {
+        print("no API results :(")
     }
 }
