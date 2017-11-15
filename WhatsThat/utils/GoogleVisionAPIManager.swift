@@ -47,7 +47,6 @@ class GoogleVisionAPIManager {
     private func resultsFromJsonData(data: Data) -> [GoogleVisionResult] {
         let decoder = JSONDecoder()
         let googleVisionResults = try? decoder.decode([GoogleVisionResult].self, from: data)
-        // print(googleVisionResults)
         return googleVisionResults ?? [GoogleVisionResult]()
     }
     
@@ -64,6 +63,7 @@ class GoogleVisionAPIManager {
         } else {
             // Parse the response
             let responses: JSON = json["responses"][0]
+            print(responses)
             
             // Get web entities
             let webEntities: JSON = responses["webDetection"]["webEntities"]
@@ -71,20 +71,19 @@ class GoogleVisionAPIManager {
             let labelAnnotations: JSON = responses["labelAnnotations"]
             
             // TODO: test
-            // Serialize the JSON
+            // Serialize the JSONs
             guard let jsonWebData = try? webEntities.rawData() else {
                 return
             }
             guard let jsonLabelData = try? labelAnnotations.rawData() else {
                 return
             }
+            
             let webResults = resultsFromJsonData(data: jsonWebData)
-            // print(webResults)
             let labelResults = resultsFromJsonData(data: jsonLabelData)
-            // print(labelResults)
-            // Combined result
+            
+            // Combined results
             let results = webResults + labelResults
-            // print(results)
             // TODO: handle success
             self.delegate?.resultsFound(results)
         }
@@ -116,7 +115,6 @@ class GoogleVisionAPIManager {
         guard let data = try? jsonObject.rawData() else {
             return nil
         }
-        
         return data
     }
     

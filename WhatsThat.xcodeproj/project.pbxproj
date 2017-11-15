@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF067DBF4056E25BA7EEEC10 /* Pods_WhatsThat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E325CB5585C9782D8AE91F2 /* Pods_WhatsThat.framework */; };
 		D011D9FF1FB12C28002F95D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011D9FE1FB12C28002F95D7 /* AppDelegate.swift */; };
 		D011DA011FB12C28002F95D7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011DA001FB12C28002F95D7 /* MenuViewController.swift */; };
 		D011DA041FB12C28002F95D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D011DA021FB12C28002F95D7 /* Main.storyboard */; };
@@ -20,9 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E325CB5585C9782D8AE91F2 /* Pods_WhatsThat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsThat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F13694645F5375900CAACB8 /* Pods-WhatsThat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsThat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatsThat/Pods-WhatsThat.release.xcconfig"; sourceTree = "<group>"; };
 		6950A1F46DECE2A04BDE2794 /* Pods-WhatsThat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsThat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhatsThat/Pods-WhatsThat.debug.xcconfig"; sourceTree = "<group>"; };
-		D011D9FB1FB12C28002F95D7 /* What's That.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "What's That.app"; path = WhatsThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D011D9FB1FB12C28002F95D7 /* WhatsThat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D011D9FE1FB12C28002F95D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D011DA001FB12C28002F95D7 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D011DA031FB12C28002F95D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0EA78F61FBBA2D200A82565 /* SwiftyJSON.framework in Frameworks */,
+				BF067DBF4056E25BA7EEEC10 /* Pods_WhatsThat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				D0EA78F71FBBA2D200A82565 /* SwiftyJSON.framework */,
+				3E325CB5585C9782D8AE91F2 /* Pods_WhatsThat.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -80,7 +84,7 @@
 		D011D9FC1FB12C28002F95D7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D011D9FB1FB12C28002F95D7 /* What's That.app */,
+				D011D9FB1FB12C28002F95D7 /* WhatsThat.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,7 +158,7 @@
 			);
 			name = WhatsThat;
 			productName = WhatsThat;
-			productReference = D011D9FB1FB12C28002F95D7 /* What's That.app */;
+			productReference = D011D9FB1FB12C28002F95D7 /* WhatsThat.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -342,7 +346,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -393,7 +397,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -406,12 +410,14 @@
 			baseConfigurationReference = 6950A1F46DECE2A04BDE2794 /* Pods-WhatsThat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V97ZQFVX96;
 				INFOPLIST_FILE = "$(SRCROOT)/WhatsThat/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.gwu.WhatsThat;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.gwu.WhatsThatApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -422,12 +428,14 @@
 			baseConfigurationReference = 5F13694645F5375900CAACB8 /* Pods-WhatsThat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V97ZQFVX96;
 				INFOPLIST_FILE = "$(SRCROOT)/WhatsThat/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.gwu.WhatsThat;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.gwu.WhatsThatApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

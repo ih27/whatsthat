@@ -193,11 +193,11 @@ extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewD
 // Implement GoogleVisionAPIManager delegate functions
 extension PhotoIdentificationViewController: GoogleVisionDelegate {
     func resultsFound(_ results: [GoogleVisionResult]) {
-        self.results = results
+        // Results sorted by confidence scores
+        self.results = results.sorted(by: {$0.score > $1.score})
         
         // Run in the main thread
         DispatchQueue.main.async {
-            print(self.results)
             self.tableView.reloadData()
         }
     }
