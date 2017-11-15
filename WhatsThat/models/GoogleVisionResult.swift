@@ -10,7 +10,7 @@ import Foundation
 
 struct GoogleVisionResult: Decodable {
     let description: String
-    let entityId: String
+    // let entityId: String
     let score: Decimal
     
 //    enum CodingKeys: String, CodingKey {
