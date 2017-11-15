@@ -144,6 +144,7 @@ class PhotoIdentificationViewController: UIViewController {
     // Fetch results with the help of GoogleVisionAPIManager
     private func fetchResults(for image: UIImage) {
         let manager = GoogleVisionAPIManager()
+        manager.delegate = self
         manager.fetchIdentifications(for: image)
     }
 }
@@ -183,7 +184,7 @@ extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewD
     // Set the text for each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "identifiedObjectCell", for: indexPath)
-        cell.textLabel?.text = "\(results[indexPath.row])"
+        cell.textLabel?.text = "\(results[indexPath.row].description)"
         
         return cell
     }    
@@ -196,6 +197,7 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
         
         // Run in the main thread
         DispatchQueue.main.async {
+            print(self.results)
             self.tableView.reloadData()
         }
     }
