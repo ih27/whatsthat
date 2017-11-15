@@ -1,4 +1,4 @@
-#  What's That? by Ismayil Hasanov
+#  WhatsThat? by Ismayil Hasanov
 
 Description: The app lets users discover more information about things they see.
 

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9CBAFA0BC59177EDBC881542 /* Pods_What_s_That.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCB06696B4BACAB3D7CD82B /* Pods_What_s_That.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		D011D9FF1FB12C28002F95D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011D9FE1FB12C28002F95D7 /* AppDelegate.swift */; };
 		D011DA011FB12C28002F95D7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011DA001FB12C28002F95D7 /* MenuViewController.swift */; };
 		D011DA041FB12C28002F95D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D011DA021FB12C28002F95D7 /* Main.storyboard */; };
@@ -21,10 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		329F409BB6FBECA56DF0D1E8 /* Pods-What's That.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What's That.release.xcconfig"; path = "Pods/Target Support Files/Pods-What's That/Pods-What's That.release.xcconfig"; sourceTree = "<group>"; };
-		8DCB06696B4BACAB3D7CD82B /* Pods_What_s_That.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_s_That.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2A25FD9650039D77698D920 /* Pods-What's That.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What's That.debug.xcconfig"; path = "Pods/Target Support Files/Pods-What's That/Pods-What's That.debug.xcconfig"; sourceTree = "<group>"; };
-		D011D9FB1FB12C28002F95D7 /* What's That.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What's That.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F13694645F5375900CAACB8 /* Pods-WhatsThat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsThat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatsThat/Pods-WhatsThat.release.xcconfig"; sourceTree = "<group>"; };
+		6950A1F46DECE2A04BDE2794 /* Pods-WhatsThat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsThat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhatsThat/Pods-WhatsThat.debug.xcconfig"; sourceTree = "<group>"; };
+		D011D9FB1FB12C28002F95D7 /* What's That.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "What's That.app"; path = WhatsThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D011D9FE1FB12C28002F95D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D011DA001FB12C28002F95D7 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D011DA031FB12C28002F95D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,7 +43,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0EA78F61FBBA2D200A82565 /* SwiftyJSON.framework in Frameworks */,
-				9CBAFA0BC59177EDBC881542 /* Pods_What_s_That.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				D0EA78F71FBBA2D200A82565 /* SwiftyJSON.framework */,
-				8DCB06696B4BACAB3D7CD82B /* Pods_What_s_That.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -64,8 +60,8 @@
 		BFDA235DD3760EA3A9C8F76E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B2A25FD9650039D77698D920 /* Pods-What's That.debug.xcconfig */,
-				329F409BB6FBECA56DF0D1E8 /* Pods-What's That.release.xcconfig */,
+				6950A1F46DECE2A04BDE2794 /* Pods-WhatsThat.debug.xcconfig */,
+				5F13694645F5375900CAACB8 /* Pods-WhatsThat.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -74,7 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				D071EBFC1FB22A0900A65760 /* README.md */,
-				D011D9FD1FB12C28002F95D7 /* What's That */,
+				D011D9FD1FB12C28002F95D7 /* WhatsThat */,
 				D011D9FC1FB12C28002F95D7 /* Products */,
 				BFDA235DD3760EA3A9C8F76E /* Pods */,
 				46D9E0AB3F5991870F558076 /* Frameworks */,
@@ -89,7 +85,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D011D9FD1FB12C28002F95D7 /* What's That */ = {
+		D011D9FD1FB12C28002F95D7 /* WhatsThat */ = {
 			isa = PBXGroup;
 			children = (
 				D011D9FE1FB12C28002F95D7 /* AppDelegate.swift */,
@@ -99,7 +95,7 @@
 				D011DA111FB12FCD002F95D7 /* utils */,
 				D011DA101FB12FB8002F95D7 /* models */,
 			);
-			path = "What's That";
+			path = WhatsThat;
 			sourceTree = "<group>";
 		};
 		D011DA101FB12FB8002F95D7 /* models */ = {
@@ -141,9 +137,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D011D9FA1FB12C28002F95D7 /* What's That */ = {
+		D011D9FA1FB12C28002F95D7 /* WhatsThat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D011DA0D1FB12C28002F95D7 /* Build configuration list for PBXNativeTarget "What's That" */;
+			buildConfigurationList = D011DA0D1FB12C28002F95D7 /* Build configuration list for PBXNativeTarget "WhatsThat" */;
 			buildPhases = (
 				007A82A8AF26C0F2F7607799 /* [CP] Check Pods Manifest.lock */,
 				D011D9F71FB12C28002F95D7 /* Sources */,
@@ -156,8 +152,8 @@
 			);
 			dependencies = (
 			);
-			name = "What's That";
-			productName = "What's That";
+			name = WhatsThat;
+			productName = WhatsThat;
 			productReference = D011D9FB1FB12C28002F95D7 /* What's That.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -177,7 +173,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D011D9F61FB12C28002F95D7 /* Build configuration list for PBXProject "Whats That" */;
+			buildConfigurationList = D011D9F61FB12C28002F95D7 /* Build configuration list for PBXProject "WhatsThat" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -190,7 +186,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D011D9FA1FB12C28002F95D7 /* What's That */,
+				D011D9FA1FB12C28002F95D7 /* WhatsThat */,
 			);
 		};
 /* End PBXProject section */
@@ -220,7 +216,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-What's That-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WhatsThat-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -233,7 +229,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-What's That/Pods-What's That-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-WhatsThat/Pods-WhatsThat-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -242,7 +238,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-What's That/Pods-What's That-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhatsThat/Pods-WhatsThat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BAEFD2DEDD4844B640BFE998 /* [CP] Copy Pods Resources */ = {
@@ -257,7 +253,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-What's That/Pods-What's That-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhatsThat/Pods-WhatsThat-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -407,14 +403,14 @@
 		};
 		D011DA0E1FB12C28002F95D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B2A25FD9650039D77698D920 /* Pods-What's That.debug.xcconfig */;
+			baseConfigurationReference = 6950A1F46DECE2A04BDE2794 /* Pods-WhatsThat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V97ZQFVX96;
-				INFOPLIST_FILE = "What's That/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/WhatsThat/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.gwu.Whats-That";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.gwu.WhatsThat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -423,14 +419,14 @@
 		};
 		D011DA0F1FB12C28002F95D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 329F409BB6FBECA56DF0D1E8 /* Pods-What's That.release.xcconfig */;
+			baseConfigurationReference = 5F13694645F5375900CAACB8 /* Pods-WhatsThat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V97ZQFVX96;
-				INFOPLIST_FILE = "What's That/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/WhatsThat/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.gwu.Whats-That";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.gwu.WhatsThat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -440,7 +436,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D011D9F61FB12C28002F95D7 /* Build configuration list for PBXProject "Whats That" */ = {
+		D011D9F61FB12C28002F95D7 /* Build configuration list for PBXProject "WhatsThat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D011DA0B1FB12C28002F95D7 /* Debug */,
@@ -449,7 +445,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D011DA0D1FB12C28002F95D7 /* Build configuration list for PBXNativeTarget "What's That" */ = {
+		D011DA0D1FB12C28002F95D7 /* Build configuration list for PBXNativeTarget "WhatsThat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D011DA0E1FB12C28002F95D7 /* Debug */,
