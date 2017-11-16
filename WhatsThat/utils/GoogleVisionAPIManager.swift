@@ -65,24 +65,26 @@ class GoogleVisionAPIManager {
             let responses: JSON = json["responses"][0]
             
             // Get web entities
-            let webEntities: JSON = responses["webDetection"]["webEntities"]
+            // let webEntities: JSON = responses["webDetection"]["webEntities"]
+            
             // Get label annotations
             let labelAnnotations: JSON = responses["labelAnnotations"]
             
             // TODO: test
             // Serialize the JSONs
-            guard let jsonWebData = try? webEntities.rawData() else {
-                return
-            }
+//            guard let jsonWebData = try? webEntities.rawData() else {
+//                return
+//            }
             guard let jsonLabelData = try? labelAnnotations.rawData() else {
                 return
             }
             
-            let webResults = resultsFromJsonData(data: jsonWebData)
+            // let webResults = resultsFromJsonData(data: jsonWebData)
             let labelResults = resultsFromJsonData(data: jsonLabelData)
             
-            // Combined results, duplicates removed
-            let results = Array(Set(webResults + labelResults))
+            // Results: sorted by score
+            let results = labelResults.sorted(by: { $0.score > $1.score })
+            
             // TODO: handle success
             self.delegate?.resultsFound(results)
         }
@@ -98,12 +100,8 @@ class GoogleVisionAPIManager {
                 ],
                 "features": [
                     [
-                        "type": "WEB_DETECTION",
-                        "maxResults": 5
-                    ],
-                    [
                         "type": "LABEL_DETECTION",
-                        "maxResults": 5
+                        "maxResults": 10
                     ]
                 ]
             ]
@@ -117,9 +115,29 @@ class GoogleVisionAPIManager {
         return data
     }
     
+    // Convert the image to base64 encoded string
     private func base64Encode(_ image: UIImage) -> String {
         let compressionQuality: CGFloat = 0.7
-        let imageData = UIImageJPEGRepresentation(image, compressionQuality)
-        return imageData?.base64EncodedString() ?? ""
+        var imageData = UIImageJPEGRepresentation(image, compressionQuality) ?? Data()
+        
+        // Resize the image if it exceeds the 2MB API limit (borrowed from Google Vision API sample)
+        if (imageData.count > 2097152) {
+            let oldSize: CGSize = image.size
+            let newSize: CGSize = CGSize(width: 800, height: oldSize.height / oldSize.width * 800)
+            imageData = resize(image, to: newSize)
+        }
+        
+        return imageData.base64EncodedString()
+    }
+    
+    // Resize the image to newSize (borrowed from Google Vision API sample)
+    private func resize(_ image: UIImage, to imageSize: CGSize) -> Data {
+        UIGraphicsBeginImageContext(imageSize)
+        image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        let compressionQuality: CGFloat = 0.7
+        let resizedImage = UIImageJPEGRepresentation(newImage!, compressionQuality)
+        UIGraphicsEndImageContext()
+        return resizedImage!
     }
 }

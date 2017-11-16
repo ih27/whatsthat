@@ -8,13 +8,7 @@
 
 import Foundation
 
-struct GoogleVisionResult: Decodable, Hashable, Equatable {
-    var hashValue: Int { get { return description.lowercased().hashValue } }
-    
+struct GoogleVisionResult: Decodable {    
     let description: String
-    let score: Decimal
-    
-    static func ==(lhs: GoogleVisionResult, rhs: GoogleVisionResult) -> Bool {
-        return lhs.description.lowercased() == rhs.description.lowercased()
-    }
+    let score: Float
 }
