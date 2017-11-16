@@ -18,6 +18,9 @@ class PhotoIdentificationViewController: UIViewController {
     // A variable to hold Google Vision API results
     var results = [GoogleVisionResult]()
     
+    // A variable to pass to Wikipedia API
+    var label = ""
+    
     // A variable to set the source segue
     var source = ""
     
@@ -33,6 +36,13 @@ class PhotoIdentificationViewController: UIViewController {
             requestCameraPermissionsIfNeeded()
         } else {
             requestPhotoLibraryPermissionsIfNeeded()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "PhotoDetails") {
+            let vc = segue.destination as! PhotoDetailsViewController
+            vc.wikipediaTerm = label
         }
     }
     
@@ -171,18 +181,22 @@ extension PhotoIdentificationViewController: UIImagePickerControllerDelegate, UI
 
 // Implement table view delegate functions
 extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewDelegate {
-    // Disable the section header by setting the heigh to minimum
+    
+    // Disable the section header by setting the height to minimum
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
         return CGFloat.leastNormalMagnitude
     }
     
     // Number of rows in the table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return results.count
     }
     
     // Set the preperties for each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "identifiedObjectCell", for: indexPath)
         let label = results[indexPath.row]
         
@@ -194,7 +208,16 @@ extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewD
         cell.detailTextLabel?.textColor = UIColor.gray
         
         return cell
-    }    
+    }
+    
+    // Set the wikipedia label and go to the details view
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        label = cell?.textLabel?.text ?? ""
+        
+        performSegue(withIdentifier: "PhotoDetails", sender: self)
+    }
 }
 
 // Implement GoogleVisionAPIManager delegate functions

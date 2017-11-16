@@ -213,11 +213,43 @@
                     <connections>
                         <outlet property="imageView" destination="Q0w-xA-YoQ" id="aqN-DY-cBK"/>
                         <outlet property="tableView" destination="tgN-bg-cEq" id="Qik-2p-tER"/>
+                        <segue destination="tsc-Iw-OYN" kind="show" identifier="PhotoDetails" id="VHm-N4-J7X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fe-14-MqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="840.79999999999995" y="882.90854572713647"/>
+        </scene>
+        <!--Photo Details View Controller-->
+        <scene sceneID="l9a-Rw-Dql">
+            <objects>
+                <viewController id="tsc-Iw-OYN" customClass="PhotoDetailsViewController" customModule="WhatsThat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QL9-Nk-86n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92h-OX-9bA">
+                                <rect key="frame" x="0.0" y="67" width="375" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="92h-OX-9bA" firstAttribute="leading" secondItem="Pjo-qY-tnZ" secondAttribute="leading" id="8cs-6c-4Kw"/>
+                            <constraint firstItem="92h-OX-9bA" firstAttribute="top" secondItem="Pjo-qY-tnZ" secondAttribute="top" constant="3" id="e0O-9N-LUw"/>
+                            <constraint firstItem="Pjo-qY-tnZ" firstAttribute="trailing" secondItem="92h-OX-9bA" secondAttribute="trailing" id="mJp-6C-oNJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pjo-qY-tnZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="idLabel" destination="92h-OX-9bA" id="4Il-6A-0YS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oZx-ia-SeO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2651" y="485"/>
         </scene>
     </scenes>
     <resources>
