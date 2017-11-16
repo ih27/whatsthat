@@ -63,7 +63,6 @@ class GoogleVisionAPIManager {
         } else {
             // Parse the response
             let responses: JSON = json["responses"][0]
-            print(responses)
             
             // Get web entities
             let webEntities: JSON = responses["webDetection"]["webEntities"]
@@ -82,8 +81,8 @@ class GoogleVisionAPIManager {
             let webResults = resultsFromJsonData(data: jsonWebData)
             let labelResults = resultsFromJsonData(data: jsonLabelData)
             
-            // Combined results
-            let results = webResults + labelResults
+            // Combined results, duplicates removed
+            let results = Array(Set(webResults + labelResults))
             // TODO: handle success
             self.delegate?.resultsFound(results)
         }

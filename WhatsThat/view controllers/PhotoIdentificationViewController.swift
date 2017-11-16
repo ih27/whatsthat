@@ -184,7 +184,7 @@ extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewD
     // Set the text for each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "identifiedObjectCell", for: indexPath)
-        cell.textLabel?.text = "\(results[indexPath.row].description)"
+        cell.textLabel?.text = "\(results[indexPath.row].description.lowercased())"
         
         return cell
     }    
@@ -194,6 +194,7 @@ extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewD
 extension PhotoIdentificationViewController: GoogleVisionDelegate {
     func resultsFound(_ results: [GoogleVisionResult]) {
         // Results sorted by confidence scores
+        print(results.count)
         self.results = results.sorted(by: {$0.score > $1.score})
         
         // Run in the main thread

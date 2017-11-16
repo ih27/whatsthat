@@ -8,14 +8,13 @@
 
 import Foundation
 
-struct GoogleVisionResult: Decodable {
+struct GoogleVisionResult: Decodable, Hashable, Equatable {
+    var hashValue: Int { get { return description.lowercased().hashValue } }
+    
     let description: String
-    // let entityId: String
     let score: Decimal
     
-//    enum CodingKeys: String, CodingKey {
-//    case name // matches above
-//    case address // matches above
-//    case logoUrlString = "image_url"
-//    }
+    static func ==(lhs: GoogleVisionResult, rhs: GoogleVisionResult) -> Bool {
+        return lhs.description.lowercased() == rhs.description.lowercased()
+    }
 }
