@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GoogleVisionResult: Decodable {    
+struct GoogleVisionResult: Decodable {
     let description: String
     let score: Float
 }
