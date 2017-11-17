@@ -16,7 +16,7 @@ class PhotoIdentificationViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // A variable to hold Google Vision API results
-    var results = [GoogleVisionResult]()
+    var results = [GoogleVisionLabel]()
     
     // A variable to pass to Wikipedia API
     var label = ""
@@ -95,11 +95,6 @@ class PhotoIdentificationViewController: UIViewController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .camera
         imagePicker.delegate = self
-        
-        // iPad related stuff
-        //imagePicker.modalPresentationStyle = .popover
-        //imagePicker.popoverPresentationController?.delegate = self
-        //imagePicker.popoverPresentationController?.sourceView = view
         
         // Make sure the camera is available
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
@@ -222,7 +217,7 @@ extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewD
 
 // Implement GoogleVisionAPIManager delegate functions
 extension PhotoIdentificationViewController: GoogleVisionDelegate {
-    func resultsFound(_ results: [GoogleVisionResult]) {
+    func resultsFound(_ results: [GoogleVisionLabel]) {
         // Results sorted by confidence scores
         self.results = results
         

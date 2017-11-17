@@ -8,10 +8,9 @@
 
 import Foundation
 import UIKit
-import SwiftyJSON
 
 protocol GoogleVisionDelegate {
-    func resultsFound(_ results: [GoogleVisionResult])
+    func resultsFound(_ results: [GoogleVisionLabel])
     func resultsNotFound()
 }
 
@@ -33,61 +32,30 @@ class GoogleVisionAPIManager {
         let task = URLSession.shared.dataTask(with: urlRequest) {
             (data, response, error) -> Void in
             
-            guard let data = data, error == nil else {
+            guard let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 print(error?.localizedDescription ?? "")
                 return
             }
             
-            self.analyzeResults(data)
+            // Parse the results
+            self.parseResults(with: data)
         }
         
         task.resume()
     }
     
-    private func resultsFromJsonData(data: Data) -> [GoogleVisionResult] {
-        let decoder = JSONDecoder()
-        let googleVisionResults = try? decoder.decode([GoogleVisionResult].self, from: data)
-        return googleVisionResults ?? [GoogleVisionResult]()
-    }
-    
-    // TODO: Correct
-    func analyzeResults(_ dataToParse: Data) {
-            
-        // Use SwiftyJSON to parse results
-        let json = try! JSON(data: dataToParse)
-        let errorObj: JSON = json["error"]
+    // Parse the returned result to our label model object
+    private func parseResults(with dataToParse: Data) {
         
-        // Check for errors
-        if (errorObj.dictionaryValue != [:]) {
-            print("Error code \(errorObj["code"]): \(errorObj["message"])")
-        } else {
-            // Parse the response
-            let responses: JSON = json["responses"][0]
+        let jsonDecoder = JSONDecoder()
+        let result = try? jsonDecoder.decode(GoogleVisionResult.self, from: dataToParse)
+        let labelResults = result?.responses[0].labelAnnotations ?? [GoogleVisionLabel]()
             
-            // Get web entities
-            // let webEntities: JSON = responses["webDetection"]["webEntities"]
-            
-            // Get label annotations
-            let labelAnnotations: JSON = responses["labelAnnotations"]
-            
-            // TODO: test
-            // Serialize the JSONs
-//            guard let jsonWebData = try? webEntities.rawData() else {
-//                return
-//            }
-            guard let jsonLabelData = try? labelAnnotations.rawData() else {
-                return
-            }
-            
-            // let webResults = resultsFromJsonData(data: jsonWebData)
-            let labelResults = resultsFromJsonData(data: jsonLabelData)
-            
-            // Results: sorted by score
-            let results = labelResults.sorted(by: { $0.score > $1.score })
-            
-            // TODO: handle success
-            self.delegate?.resultsFound(results)
-        }
+        // Results: sorted by score
+        let results = labelResults.sorted(by: { $0.score > $1.score })
+        
+        // Return the results to the conformee
+        self.delegate?.resultsFound(results)
     }
     
     // Return the JSON given the image for Cloud Vision API
@@ -106,12 +74,8 @@ class GoogleVisionAPIManager {
                 ]
             ]
         ]
-        let jsonObject = JSON(jsonRequest)
-        
-        // Serialize the JSON
-        guard let data = try? jsonObject.rawData() else {
-            return nil
-        }
+
+        let data = try? JSONSerialization.data(withJSONObject: jsonRequest)
         return data
     }
     

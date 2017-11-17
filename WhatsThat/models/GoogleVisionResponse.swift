@@ -1,5 +1,5 @@
 //
-//  GoogleVisionResult.swift
+//  GoogleVisionResponse.swift
 //  WhatsThat
 //
 //  Created by Ismayil Hasanov on 11/17/17.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct GoogleVisionResult: Decodable {
-    let responses: [GoogleVisionResponse]
+struct GoogleVisionResponse: Decodable {
+    let labelAnnotations: [GoogleVisionLabel]
 }
