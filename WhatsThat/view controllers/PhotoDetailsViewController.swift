@@ -16,12 +16,15 @@ class PhotoDetailsViewController: UIViewController {
     // The term passed from PhotoIdentification view
     var wikipediaTerm = ""
     
+    // The photo passed from PhotoIdentification view (in case if needed for the favorite thumbnail
+    var photo: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         idLabel.text = wikipediaTerm
         
-        // Add favorite button
+        // Add favorite button to the navigation bar
         if favoritePressed {
             iconName = "heart-filled"
         }
