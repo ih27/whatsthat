@@ -16,6 +16,7 @@
 		D06A5DF31FB6A9C800684AFE /* GoogleVisionAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A5DF21FB6A9C800684AFE /* GoogleVisionAPIManager.swift */; };
 		D09163511FBFC74F003D7A84 /* WikipediaAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09163501FBFC74E003D7A84 /* WikipediaAPIManager.swift */; };
 		D09163531FBFC7B6003D7A84 /* WikipediaResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09163521FBFC7B6003D7A84 /* WikipediaResult.swift */; };
+		D097B01D1FC1411500A4DA82 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D097B01C1FC1411500A4DA82 /* String+Extensions.swift */; };
 		D0A78B361FB3A03F00A1EB42 /* SnapSelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A78B351FB3A03F00A1EB42 /* SnapSelectPhotoViewController.swift */; };
 		D0B70F9F1FBF9F3800701265 /* GoogleVisionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B70F9E1FBF9F3800701265 /* GoogleVisionResponse.swift */; };
 		D0B70FA31FBFA26F00701265 /* GoogleVisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B70FA21FBFA26F00701265 /* GoogleVisionResult.swift */; };
@@ -36,6 +37,7 @@
 		D071EBFC1FB22A0900A65760 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D09163501FBFC74E003D7A84 /* WikipediaAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaAPIManager.swift; sourceTree = "<group>"; };
 		D09163521FBFC7B6003D7A84 /* WikipediaResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaResult.swift; sourceTree = "<group>"; };
+		D097B01C1FC1411500A4DA82 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		D0A78B351FB3A03F00A1EB42 /* SnapSelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapSelectPhotoViewController.swift; sourceTree = "<group>"; };
 		D0B70F9E1FBF9F3800701265 /* GoogleVisionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVisionResponse.swift; sourceTree = "<group>"; };
 		D0B70FA21FBFA26F00701265 /* GoogleVisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVisionResult.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				D06A5DF21FB6A9C800684AFE /* GoogleVisionAPIManager.swift */,
 				D09163501FBFC74E003D7A84 /* WikipediaAPIManager.swift */,
+				D097B01C1FC1411500A4DA82 /* String+Extensions.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				D0B70FA31FBFA26F00701265 /* GoogleVisionResult.swift in Sources */,
 				D0B70F9F1FBF9F3800701265 /* GoogleVisionResponse.swift in Sources */,
 				D09163531FBFC7B6003D7A84 /* WikipediaResult.swift in Sources */,
+				D097B01D1FC1411500A4DA82 /* String+Extensions.swift in Sources */,
 				D011DA011FB12C28002F95D7 /* MenuViewController.swift in Sources */,
 				D0FA3F0C1FBB59C300250E2C /* GoogleVisionLabel.swift in Sources */,
 				D06A5DF11FB688A500684AFE /* PhotoIdentificationViewController.swift in Sources */,
