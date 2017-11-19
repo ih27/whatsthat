@@ -56,10 +56,11 @@ class PhotoDetailsViewController: UIViewController {
     }
     
     @IBAction func wikiButtonTapped(_ sender: UIButton) {
-        let svc = SFSafariViewController(url: URL(string: wikipediaPageUrl)!)
-        present(svc, animated: true, completion: nil)
-    }
-    
+        if let url = URL(string: wikipediaPageUrl) {
+            let vc = SFSafariViewController(url: url)
+            present(vc, animated: true)
+        }
+    }    
     
     // Fetch results with the help of WikipediaAPIManager
     private func fetchResults(for query: String) {
