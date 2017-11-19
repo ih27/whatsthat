@@ -11,6 +11,7 @@ import AVFoundation
 import Photos
 
 class PhotoIdentificationViewController: UIViewController {
+    
     // Interface Builder outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
