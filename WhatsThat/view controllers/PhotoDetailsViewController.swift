@@ -24,6 +24,10 @@ class PhotoDetailsViewController: UIViewController {
         
         idLabel.text = wikipediaTerm
         
+        // TODO: Clean up
+        let wikiManager = WikipediaAPIManager()
+        wikiManager.fetchExtract(for: wikipediaTerm)
+        
         // Add favorite button to the navigation bar
         if favoritePressed {
             iconName = "heart-filled"
