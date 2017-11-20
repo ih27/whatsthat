@@ -1,4 +1,4 @@
-#  WhatsThat by Ismayil Hasanov
+#  What's That? by Ismayil Hasanov
 
 Description: The app lets users discover more information about things they see.
 
@@ -39,7 +39,7 @@ Description: The app lets users discover more information about things they see.
 * ~~Utilize “black box” classes for encapsulating functionality - (e.g. GoogleVisionAPIManager.swift, PersistanceManager.swift, etc..)~~
 * ~~“Black box” classes should communicate with UIViewControllers using Protocols~~
 * Support portrait and landscape mode (UI components should not be cut off if user switches to landscape)
-* Don't forget to to include an app icon
+* ~~Don't forget to to include an app icon~~
 ---
 ## Coding Guidelines:
 * ~~Github must be used as your source control commits should be happening incrementally leading up until the deadline~~
