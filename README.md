@@ -8,8 +8,8 @@ Description: The app lets users discover more information about things they see.
 3) ~~Display the photo, along with with a list of results of the identification~~
 4) ~~Upon the user selecting an identification, display a detailed description~~
 5) ~~From the description screen, allow the user to tap a button to display the Wikipedia page for more information~~
-6) From the description screen, allow the user to tap a button to search twitter for the identification
-7) Allow the user to scroll through a Twitter results screen
+6) ~~From the description screen, allow the user to tap a button to search twitter for the identification~~
+7) ~~Allow the user to scroll through a Twitter results screen~~
 8) Allow the user to favorite/unfavorite an identification from the description screen
 9) ~~Allow the user to share an identification/description from the description screen~~
 10) Allow the user to view a list of favorited identifications, tapping an identification will display a description screen (just like the prior requirement)
@@ -32,8 +32,8 @@ Description: The app lets users discover more information about things they see.
 * ~~The result should be array of model objects (e.g. GoogleVisionResult objects or a WikipediaResult object), it should not return a JSON object~~
 * ~~A [SafariViewController](https://www.hackingwithswift.com/read/32/3/how-to-use-sfsafariviewcontroller-to-browse-a-web-page) should be used to load the wikipedia page (example [link](https://en.wikipedia.org/?curid=16161443))~~
 * ~~Any list in the app (except the Tweet list) should be displayed using a UITableView~~
-* Twitter’s [TwitterKit](https://dev.twitter.com/twitterkit/ios/overview) and its “Search Timeline” feature should be used to interact with Twitter and display Tweets (using TWTRTimelineViewController)
-* Include the TwitterKit library using CocoaPods
+* ~~Twitter’s [TwitterKit](https://dev.twitter.com/twitterkit/ios/overview) and its “Search Timeline” feature should be used to interact with Twitter and display Tweets (using TWTRTimelineViewController)~~
+* ~~Include the TwitterKit library using CocoaPods~~
 * Persist favorited identifications/descriptions using UserDefaults
 * ~~Share functionality should be implemented using a UIActivityViewController~~
 * ~~Utilize “black box” classes for encapsulating functionality - (e.g. GoogleVisionAPIManager.swift, PersistanceManager.swift, etc..)~~
