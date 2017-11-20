@@ -28,7 +28,7 @@ class PhotoDetailsViewController: UIViewController {
     var wikipediaPageUrl = "https://en.wikipedia.org/?curid="
     
     // The photo passed from PhotoIdentification view (in case if needed for the favorite thumbnail
-    var photo: UIImage?
+    var photo = UIImage()
     
     override func viewDidLoad() {
         
@@ -55,13 +55,27 @@ class PhotoDetailsViewController: UIViewController {
         if favoritePressed {
             favoritePressed = false
             iconName = "heart"
+            // print("unfavorite")
+            deleteFavorite()
         } else {
             favoritePressed = true
             iconName = "heart-filled"
+            // print("favorite")
+            saveFavorite()
         }
         
         // Set the new image for the favorite button
         navigationItem.rightBarButtonItem?.image = UIImage(named: iconName)
+    }
+    
+    // Save the current label and its associated image as a favorite
+    func saveFavorite() {
+        Persistance.sharedInstance.saveIdentification(wikipediaTerm, photo)
+    }
+    
+    // Delete the current label and its associated image from favorites list
+    func deleteFavorite() {
+        Persistance.sharedInstance.deleteIdentification(wikipediaTerm, photo)
     }
     
     @IBAction func wikiButtonTapped(_ sender: UIButton) {
@@ -86,7 +100,7 @@ class PhotoDetailsViewController: UIViewController {
         let shareText = wikiExtractTextView?.text
         let shareImage = photo
         
-        if let shareText = shareText, let shareImage = shareImage {
+        if let shareText = shareText {
             let vc = UIActivityViewController(activityItems: [shareText, shareImage], applicationActivities: [])
             present(vc, animated: true)
         }

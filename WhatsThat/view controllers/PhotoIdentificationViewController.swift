@@ -44,7 +44,7 @@ class PhotoIdentificationViewController: UIViewController {
         if (segue.identifier == "PhotoDetails") {
             let vc = segue.destination as! PhotoDetailsViewController
             vc.wikipediaTerm = label
-            vc.photo = imageView.image
+            vc.photo = imageView.image!
         }
     }
     

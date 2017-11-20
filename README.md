@@ -10,7 +10,7 @@ Description: The app lets users discover more information about things they see.
 5) ~~From the description screen, allow the user to tap a button to display the Wikipedia page for more information~~
 6) ~~From the description screen, allow the user to tap a button to search twitter for the identification~~
 7) ~~Allow the user to scroll through a Twitter results screen~~
-8) Allow the user to favorite/unfavorite an identification from the description screen
+8) ~~Allow the user to favorite/unfavorite an identification from the description screen~~
 9) ~~Allow the user to share an identification/description from the description screen~~
 10) Allow the user to view a list of favorited identifications, tapping an identification will display a description screen (just like the prior requirement)
 11) Never crash or leave user in a bad state! If something goes wrong, present a helpful alert to the user
@@ -34,7 +34,7 @@ Description: The app lets users discover more information about things they see.
 * ~~Any list in the app (except the Tweet list) should be displayed using a UITableView~~
 * ~~Twitter’s [TwitterKit](https://dev.twitter.com/twitterkit/ios/overview) and its “Search Timeline” feature should be used to interact with Twitter and display Tweets (using TWTRTimelineViewController)~~
 * ~~Include the TwitterKit library using CocoaPods~~
-* Persist favorited identifications/descriptions using UserDefaults
+* ~~Persist favorited identifications/descriptions using UserDefaults~~
 * ~~Share functionality should be implemented using a UIActivityViewController~~
 * ~~Utilize “black box” classes for encapsulating functionality - (e.g. GoogleVisionAPIManager.swift, PersistanceManager.swift, etc..)~~
 * ~~“Black box” classes should communicate with UIViewControllers using Protocols~~
