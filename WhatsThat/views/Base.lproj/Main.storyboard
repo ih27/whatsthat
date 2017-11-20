@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -74,29 +76,47 @@
         <scene sceneID="4I6-6y-qm8">
             <objects>
                 <tableViewController title="Favorites" id="6Uu-lm-ypG" customClass="FavoritePhotosTableViewController" customModule="WhatsThat" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="eeN-nQ-FLP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" id="eeN-nQ-FLP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" red="0.96478992699999999" green="0.57065343859999995" blue="0.1243144199" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favoriteCell" textLabel="cNi-xU-ki1" style="IBUITableViewCellStyleDefault" id="fD2-4G-CWb">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="favoriteCell" rowHeight="60" id="fD2-4G-CWb" customClass="FavoriteTableViewCell" customModule="WhatsThat" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fD2-4G-CWb" id="8Io-Vt-pVb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cNi-xU-ki1">
-                                            <rect key="frame" x="15" y="0.0" width="344" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pSy-ss-Jmg">
+                                            <rect key="frame" x="280" y="4.5" width="50" height="50.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="pSy-ss-Jmg" secondAttribute="height" multiplier="1:1" id="36J-ax-YLL"/>
+                                                <constraint firstAttribute="width" constant="50" id="hJo-XJ-Biy"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oL-qW-ceL">
+                                            <rect key="frame" x="26" y="18" width="48" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pSy-ss-Jmg" firstAttribute="centerY" secondItem="8Io-Vt-pVb" secondAttribute="centerY" id="RfF-lk-AH7"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="pSy-ss-Jmg" secondAttribute="trailing" constant="3" id="XkQ-g4-VVc"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7oL-qW-ceL" secondAttribute="trailingMargin" id="fCo-Uh-fx7"/>
+                                        <constraint firstItem="7oL-qW-ceL" firstAttribute="leading" secondItem="8Io-Vt-pVb" secondAttribute="leadingMargin" constant="10" id="gb9-0g-OkD"/>
+                                        <constraint firstItem="7oL-qW-ceL" firstAttribute="centerY" secondItem="8Io-Vt-pVb" secondAttribute="centerY" id="x65-PM-V6F"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="favoriteImageView" destination="pSy-ss-Jmg" id="BB7-bx-1k5"/>
+                                    <outlet property="favoriteLabel" destination="7oL-qW-ceL" id="MRn-at-dt2"/>
+                                    <segue destination="tsc-Iw-OYN" kind="show" identifier="PhotoDetails" id="ufH-3v-fU6"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -107,7 +127,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5E-Ew-g5T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1257" y="130"/>
+            <point key="canvasLocation" x="1454" y="133"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bun-7T-Zzh">
@@ -359,6 +379,7 @@
         <image name="background" width="320" height="533"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ufH-3v-fU6"/>
         <segue reference="CL5-1o-NYM"/>
     </inferredMetricsTieBreakers>
 </document>

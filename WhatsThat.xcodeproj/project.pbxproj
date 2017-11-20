@@ -25,6 +25,7 @@
 		D0B70FA31FBFA26F00701265 /* GoogleVisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B70FA21FBFA26F00701265 /* GoogleVisionResult.swift */; };
 		D0D37F381FBD49CF00AE0473 /* PhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D37F371FBD49CF00AE0473 /* PhotoDetailsViewController.swift */; };
 		D0EEF5D21FC3383600A0FC04 /* FavoritePhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EEF5D11FC3383600A0FC04 /* FavoritePhotosTableViewController.swift */; };
+		D0EEF5D41FC3431C00A0FC04 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EEF5D31FC3431C00A0FC04 /* FavoriteTableViewCell.swift */; };
 		D0FA3F0C1FBB59C300250E2C /* GoogleVisionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA3F0B1FBB59C300250E2C /* GoogleVisionLabel.swift */; };
 		E2BCFE1F0941B22718F0041B /* Pods_WhatsThat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B2F6A0C7D08DA63064CD27 /* Pods_WhatsThat.framework */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,7 @@
 		D0B70FA21FBFA26F00701265 /* GoogleVisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVisionResult.swift; sourceTree = "<group>"; };
 		D0D37F371FBD49CF00AE0473 /* PhotoDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewController.swift; sourceTree = "<group>"; };
 		D0EEF5D11FC3383600A0FC04 /* FavoritePhotosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosTableViewController.swift; sourceTree = "<group>"; };
+		D0EEF5D31FC3431C00A0FC04 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		D0FA3F0B1FBB59C300250E2C /* GoogleVisionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVisionLabel.swift; sourceTree = "<group>"; };
 		F7C4ABD3181528B1B2428CEC /* Pods-WhatsThat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsThat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatsThat/Pods-WhatsThat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +162,7 @@
 				D011DA021FB12C28002F95D7 /* Main.storyboard */,
 				D011DA051FB12C28002F95D7 /* Assets.xcassets */,
 				D011DA071FB12C28002F95D7 /* LaunchScreen.storyboard */,
+				D0EEF5D31FC3431C00A0FC04 /* FavoriteTableViewCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				D0B70F9F1FBF9F3800701265 /* GoogleVisionResponse.swift in Sources */,
 				D09163531FBFC7B6003D7A84 /* WikipediaResult.swift in Sources */,
 				D097B01D1FC1411500A4DA82 /* String+Extensions.swift in Sources */,
+				D0EEF5D41FC3431C00A0FC04 /* FavoriteTableViewCell.swift in Sources */,
 				D0EEF5D21FC3383600A0FC04 /* FavoritePhotosTableViewController.swift in Sources */,
 				D011DA011FB12C28002F95D7 /* MenuViewController.swift in Sources */,
 				D063089C1FC321F60017245B /* Persistance.swift in Sources */,
