@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Initialize the Twitter Kit
+        Twitter.sharedInstance().start(withConsumerKey:"Zct4IihPMR8S3MOWmzVt7DDge", consumerSecret:"BTQYjbwBL99Rx6VRrNL4wQ6jkxYksqh6ZIaRZji26hIKjEGox6")
         
         let navigationBarAppearace = UINavigationBar.appearance()
         // change the background color of the navigation bar

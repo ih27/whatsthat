@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import TwitterKit
 
 class PhotoDetailsViewController: UIViewController {
     
@@ -71,7 +72,15 @@ class PhotoDetailsViewController: UIViewController {
         }
     }
     
+    @IBAction func tweetsButtonTapped(_ sender: UIButton) {
+        
+        let vc = SearchTimelineViewController()
+        vc.twitterQuery = wikipediaTerm
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func shareButtonTapped(_ sender: UIButton) {
+        
         let shareText = wikiExtractTextView?.text
         let shareImage = photo
         
@@ -118,6 +127,4 @@ extension PhotoDetailsViewController: WikipediaDelegate {
         
         print("no API results :(")
     }
-    
-    
 }
