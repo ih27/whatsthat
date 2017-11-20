@@ -67,7 +67,9 @@ class PhotoDetailsViewController: UIViewController {
     @IBAction func wikiButtonTapped(_ sender: UIButton) {
         
         if let url = URL(string: wikipediaPageUrl) {
-            let vc = SFSafariViewController(url: url)
+            let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+            // Change the control button colors to match the app theme
+            vc.preferredControlTintColor = UIColor.orange
             present(vc, animated: true)
         }
     }
