@@ -45,7 +45,17 @@ class PhotoIdentificationViewController: UIViewController {
         if (segue.identifier == "PhotoDetails") {
             let vc = segue.destination as! PhotoDetailsViewController
             vc.wikipediaTerm = label
+            
+            // TODO: DELETE
             vc.photo = imageView.image!
+            
+            // Save the image and pass the filename
+            let compressionQuality: CGFloat = 0.7
+            if let data = UIImageJPEGRepresentation(imageView.image!, compressionQuality) {
+                let filename = getDocumentsDirectory().appendingPathComponent(String.uniqueFilename())
+                try? data.write(to: filename)
+                vc.filename = filename
+            }
         }
     }
     
@@ -236,5 +246,13 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
     
     func resultsNotFound() {
         print("no API results :(")
+    }
+}
+
+// Helper function to locate the documents directory
+extension PhotoIdentificationViewController {
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }

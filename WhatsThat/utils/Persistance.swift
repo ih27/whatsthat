@@ -36,11 +36,11 @@ class Persistance {
     }
     
     // Save the passed in identification
-    func saveIdentification(_ label: String, _ image: UIImage) {
+    func saveIdentification(_ label: String, _ filename: URL) {
         
         //print("\(label): \(image.debugDescription)")
-        // Create a FavoriteIdentification object out of label and image
-        let identification = FavoriteIdentification(label: label, image: image)
+        // Create a FavoriteIdentification object out of label and filename
+        let identification = FavoriteIdentification(label: label, filename: filename)
         
         var identifications = fetchIdentifications()
         //print(identifications)
@@ -50,12 +50,12 @@ class Persistance {
     }
     
     // Delete the identification matching the label and image
-    func deleteIdentification(_ label: String, _ image: UIImage) {
+    func deleteIdentification(_ label: String, _ filename: URL) {
         
         // print("\(label) <==> \(image.debugDescription)")
         let identifications = fetchIdentifications()
         // Filter the matched identification
-        let modifiedIdentifications = identifications.filter { $0.label != label && $0.image != image}
+        let modifiedIdentifications = identifications.filter { $0.label != label && $0.filename != filename}
         // print("original: \(identifications)\nmodified: \(modifiedIdentifications)")
         
         // identifications.append(identification)

@@ -29,7 +29,7 @@ class PhotoDetailsViewController: UIViewController {
     var wikipediaPageUrl = "https://en.wikipedia.org/?curid="
     
     // The photo passed from PhotoIdentification view (in case if needed for the favorite thumbnail
-    var photo = UIImage()
+    var filename: URL?
     
     override func viewDidLoad() {
         
@@ -55,31 +55,32 @@ class PhotoDetailsViewController: UIViewController {
     
     // Toggle for favorite button
     @objc func favoriteTapped() {
-        
-        if favoritePressed {
-            favoritePressed = false
-            iconName = "heart"
-            // print("unfavorite")
-            deleteFavorite()
-        } else {
-            favoritePressed = true
-            iconName = "heart-filled"
-            // print("favorite")
-            saveFavorite()
+        if let filename = filename {
+            if favoritePressed {
+                favoritePressed = false
+                iconName = "heart"
+                // print("unfavorite")
+                deleteFavorite(with: filename)
+            } else {
+                favoritePressed = true
+                iconName = "heart-filled"
+                // print("favorite")
+                saveFavorite(with: filename)
+            }
         }
         
         // Set the new image for the favorite button
         navigationItem.rightBarButtonItem?.image = UIImage(named: iconName)
     }
     
-    // Save the current label and its associated image as a favorite
-    func saveFavorite() {
-        Persistance.sharedInstance.saveIdentification(wikipediaTerm, photo)
+    // Save the current label and its associated image filename as a favorite
+    func saveFavorite(with filename: URL) {
+        Persistance.sharedInstance.saveIdentification(wikipediaTerm, filename)
     }
     
     // Delete the current label and its associated image from favorites list
-    func deleteFavorite() {
-        Persistance.sharedInstance.deleteIdentification(wikipediaTerm, photo)
+    func deleteFavorite(with filename: URL) {
+        Persistance.sharedInstance.deleteIdentification(wikipediaTerm, filename)
     }
     
     @IBAction func wikiButtonTapped(_ sender: UIButton) {
@@ -102,7 +103,13 @@ class PhotoDetailsViewController: UIViewController {
     @IBAction func shareButtonTapped(_ sender: UIButton) {
         
         let shareText = wikiExtractTextView?.text
-        let shareImage = photo
+        
+        // Get the image from the directory to share
+        guard let filename = filename else {
+            return
+        }
+        
+        let shareImage = UIImage(contentsOfFile: filename.path)!
         
         if let shareText = shareText {
             let vc = UIActivityViewController(activityItems: [shareText, shareImage], applicationActivities: [])

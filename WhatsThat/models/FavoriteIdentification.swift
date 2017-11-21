@@ -9,23 +9,23 @@
 import Foundation
 import UIKit
 
-// Used to archive/unarchive label and image combination for favorites functionality
+// Used to archive/unarchive label and filename combination for favorites functionality
 class FavoriteIdentification: NSObject {
     let label: String
-    let image: UIImage
+    let filename: URL
 
     let labelKey = "label"
-    let imageKey = "image"
+    let filenameKey = "filename"
     
-    init(label: String, image: UIImage) {
+    init(label: String, filename: URL) {
         
         self.label = label
-        self.image = image
+        self.filename = filename
     }
     
     required init?(coder aDecoder: NSCoder) {
         label = aDecoder.decodeObject(forKey: labelKey) as! String
-        image = aDecoder.decodeObject(forKey: imageKey) as! UIImage
+        filename = aDecoder.decodeObject(forKey: filenameKey) as! URL
     }
 }
 

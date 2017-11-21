@@ -88,20 +88,22 @@ class GoogleVisionAPIManager {
         if (imageData.count > 2097152) {
             let oldSize: CGSize = image.size
             let newSize: CGSize = CGSize(width: 800, height: oldSize.height / oldSize.width * 800)
-            imageData = resize(image, to: newSize)
+            if let imageData = resize(image, to: newSize) {
+                return imageData.base64EncodedString()
+            }
         }
         
         return imageData.base64EncodedString()
     }
     
     // Resize the image to newSize (borrowed from Google Vision API sample)
-    private func resize(_ image: UIImage, to imageSize: CGSize) -> Data {
+    private func resize(_ image: UIImage, to imageSize: CGSize) -> Data? {
         UIGraphicsBeginImageContext(imageSize)
         image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         let compressionQuality: CGFloat = 0.7
         let resizedImage = UIImageJPEGRepresentation(newImage!, compressionQuality)
         UIGraphicsEndImageContext()
-        return resizedImage!
+        return resizedImage
     }
 }
