@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Photos
+import MBProgressHUD
 
 class PhotoIdentificationViewController: UIViewController {
     
@@ -152,6 +153,9 @@ class PhotoIdentificationViewController: UIViewController {
     private func fetchResults(for image: UIImage) {
         let manager = GoogleVisionAPIManager()
         manager.delegate = self
+        
+        // Start a spinner
+        MBProgressHUD.showAdded(to: self.tableView, animated: true)
         manager.fetchIdentifications(for: image)
     }
 }
@@ -226,6 +230,7 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
         // Run in the main thread
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            MBProgressHUD.hide(for: self.tableView, animated: true)
         }
     }
     

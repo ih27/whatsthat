@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 import TwitterKit
+import MBProgressHUD
 
 class PhotoDetailsViewController: UIViewController {
     
@@ -36,6 +37,9 @@ class PhotoDetailsViewController: UIViewController {
         
         // Set the label text
         idLabel.text = wikipediaTerm.capitalized
+        
+        // Start a spinner
+        MBProgressHUD.showAdded(to: self.wikiExtractTextView, animated: true)
         
         // Get the Wikipedia APi results
         fetchResults(for: wikipediaTerm)
@@ -136,6 +140,9 @@ extension PhotoDetailsViewController: WikipediaDelegate {
             self.wikiButton.isEnabled = true
             self.tweetsButton.isEnabled = true
             self.shareButton.isEnabled = true
+            
+            // Stop the spinner
+            MBProgressHUD.hide(for: self.wikiExtractTextView, animated: true)
         }
     }
     
