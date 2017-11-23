@@ -19,6 +19,12 @@ class FavoritePhotosTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Fetch the favorites and reload the table
+        favorites = Persistance.sharedInstance.fetchIdentifications()
+        tableView.reloadData()
+    }
 
     // Disable the section header by setting the height to minimum
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -32,7 +38,7 @@ class FavoritePhotosTableViewController: UITableViewController {
         return favorites.count
     }
     
-    // Set the preperties for each cell
+    // Set the properties for each cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoriteTableViewCell
 
@@ -41,24 +47,13 @@ class FavoritePhotosTableViewController: UITableViewController {
         cell.favoriteLabel.text =
         "\(favorite.label)"
         
-        print(favorite.filename.path)
-        
         // Set the thumbnail image
-        cell.favoriteImageView.image = UIImage(contentsOfFile: favorite.filename.path)
+        DispatchQueue.main.async {
+            cell.favoriteImageView.image = UIImage(contentsOfFile: favorite.filename.path)
+        }
         
         return cell
     }
-    
-//    // Go to the photo details view
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        let cell = tableView.cellForRow(at: indexPath) as! FavoriteTableViewCell
-//        detailsLabel = cell.favoriteLabel.text!
-//        print("selectrow: \(detailsLabel)")
-//        detailsImage = cell.favoriteImageView.image!
-//
-////        performSegue(withIdentifier: "PhotoDetails", sender: self)
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "PhotoDetails") {
