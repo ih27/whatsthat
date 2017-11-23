@@ -41,8 +41,10 @@ class FavoritePhotosTableViewController: UITableViewController {
         cell.favoriteLabel.text =
         "\(favorite.label)"
         
+        print(favorite.filename.path)
+        
         // Set the thumbnail image
-        cell.favoriteImageView.image = favorite.image
+        cell.favoriteImageView.image = UIImage(contentsOfFile: favorite.filename.path)
         
         return cell
     }
@@ -60,12 +62,12 @@ class FavoritePhotosTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "PhotoDetails") {
+
             let vc = segue.destination as! PhotoDetailsViewController
+            let favorite = favorites[tableView.indexPathForSelectedRow!.row]
             
-            let cell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as! FavoriteTableViewCell
-            
-            vc.wikipediaTerm = cell.favoriteLabel.text!
-            vc.photo = cell.favoriteImageView.image!
+            vc.wikipediaTerm = favorite.label
+            vc.filename = favorite.filename
         }
     }
 

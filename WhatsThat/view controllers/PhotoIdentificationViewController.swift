@@ -46,9 +46,6 @@ class PhotoIdentificationViewController: UIViewController {
             let vc = segue.destination as! PhotoDetailsViewController
             vc.wikipediaTerm = label
             
-            // TODO: DELETE
-            vc.photo = imageView.image!
-            
             // Save the image and pass the filename
             let compressionQuality: CGFloat = 0.7
             if let data = UIImageJPEGRepresentation(imageView.image!, compressionQuality) {

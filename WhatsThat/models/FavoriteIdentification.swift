@@ -32,6 +32,6 @@ class FavoriteIdentification: NSObject {
 extension FavoriteIdentification: NSCoding {
     func encode(with aCoder: NSCoder) {
         aCoder.encode(label, forKey: labelKey)
-        aCoder.encode(image, forKey: imageKey)
+        aCoder.encode(filename, forKey: filenameKey)
     }
 }

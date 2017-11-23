@@ -21,7 +21,7 @@ class PhotoDetailsViewController: UIViewController {
     @IBOutlet weak var shareButton: UIButton!
     
     // Favorite button related variables
-    var favoritePressed = false
+    var isFavorite = false
     var iconName = "heart"
     
     // The term passed from PhotoIdentification view
@@ -42,27 +42,30 @@ class PhotoDetailsViewController: UIViewController {
         MBProgressHUD.showAdded(to: self.wikiExtractTextView, animated: true)
         
         // Get the Wikipedia APi results
-        fetchResults(for: wikipediaTerm)
+        fetchResults(for: wikipediaTerm)        
         
-        // Add favorite button to the navigation bar
-        if favoritePressed {
-            iconName = "heart-filled"
+        // Change the icon based on if it is a favorite
+        DispatchQueue.main.async {
+            self.isFavorite = Persistance.sharedInstance.doFavoritesContain(self.wikipediaTerm, self.filename!)
+            if self.isFavorite {
+                self.iconName = "heart-filled"
+            }
+            
+            // Set the favorite button
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: self.iconName), style: .plain, target: self, action: #selector(self.favoriteTapped))
         }
-        
-        // Set the favorite button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: iconName), style: .plain, target: self, action: #selector(favoriteTapped))
     }
     
     // Toggle for favorite button
     @objc func favoriteTapped() {
         if let filename = filename {
-            if favoritePressed {
-                favoritePressed = false
+            if isFavorite {
+                isFavorite = false
                 iconName = "heart"
                 // print("unfavorite")
                 deleteFavorite(with: filename)
             } else {
-                favoritePressed = true
+                isFavorite = true
                 iconName = "heart-filled"
                 // print("favorite")
                 saveFavorite(with: filename)
