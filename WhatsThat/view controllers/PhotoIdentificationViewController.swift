@@ -58,7 +58,7 @@ class PhotoIdentificationViewController: UIViewController {
     }
     
     // Camera access request
-    func requestCameraPermissionsIfNeeded() {
+    private func requestCameraPermissionsIfNeeded() {
         let cameraMediaType = AVMediaType.video
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
         if cameraAuthorizationStatus == .authorized {
@@ -80,7 +80,7 @@ class PhotoIdentificationViewController: UIViewController {
     }
     
     // Photo library permissions request
-    func requestPhotoLibraryPermissionsIfNeeded() {
+    private func requestPhotoLibraryPermissionsIfNeeded() {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         if photoAuthorizationStatus == .authorized {
             // Access is granted by user
@@ -101,7 +101,7 @@ class PhotoIdentificationViewController: UIViewController {
     }
     
     // Present the camera image picker to snap a photo
-    func snapPhoto() {
+    private func snapPhoto() {
         // Set the camera image picker
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .camera
@@ -114,7 +114,7 @@ class PhotoIdentificationViewController: UIViewController {
     }
     
     // Present the photo library image picker to select an image
-    func selectPhotoFromLibrary() {
+    private func selectPhotoFromLibrary() {
         // Set the photo library image picker
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
@@ -123,7 +123,7 @@ class PhotoIdentificationViewController: UIViewController {
     }
     
     // Display an alert trying to direct users to Settings
-    func displayPermissionAlert(with message: String) {
+    private func displayPermissionAlert(with message: String) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         // Setting button action
@@ -242,8 +242,21 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
         }
     }
     
-    func resultsNotFound() {
+    func resultsNotFound(_ message: String) {
         print("no API results :(")
+        
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // Cancel button action
+        let action = UIAlertAction(title: "OK", style: .default){ action in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        // Add the action
+        ac.addAction(action)
+        
+        // Present the alert
+        present(ac, animated: true)        
     }
 }
 

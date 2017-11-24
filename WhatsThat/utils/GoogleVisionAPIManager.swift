@@ -11,7 +11,7 @@ import UIKit
 
 protocol GoogleVisionDelegate {
     func resultsFound(_ results: [GoogleVisionLabel])
-    func resultsNotFound()
+    func resultsNotFound(_ message: String)
 }
 
 class GoogleVisionAPIManager {
@@ -34,6 +34,7 @@ class GoogleVisionAPIManager {
             
             guard let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 print(error?.localizedDescription ?? "")
+                self.delegate?.resultsNotFound("Network error occurred.")
                 return
             }
             
