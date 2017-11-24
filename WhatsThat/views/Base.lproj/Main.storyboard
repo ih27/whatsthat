@@ -29,16 +29,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glK-pi-6q2">
-                                <rect key="frame" x="101" y="427" width="173" height="35"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Snap/Select a Photo">
-                                    <color key="titleColor" red="0.96478992700576782" green="0.57065343856811523" blue="0.12431441992521286" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="pvw-3T-oRZ" kind="show" id="ctc-BM-L1K"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r92-Qc-x4u">
                                 <rect key="frame" x="126" y="512" width="123" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
@@ -49,19 +39,29 @@
                                     <segue destination="6Uu-lm-ypG" kind="show" identifier="favoritesSegue" id="cID-QL-jNU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55b-OX-eqG">
+                                <rect key="frame" x="101" y="427" width="173" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Snap/Select a Photo">
+                                    <color key="titleColor" red="0.96478992699999999" green="0.57065343859999995" blue="0.1243144199" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cameraOrPhotoAlbumButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k0y-rg-CKX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EzH-lh-0QC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="31k-RT-SOG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EzH-lh-0QC" secondAttribute="trailing" id="4Jk-98-Zs7"/>
-                            <constraint firstItem="r92-Qc-x4u" firstAttribute="top" secondItem="glK-pi-6q2" secondAttribute="bottom" constant="50" id="GHg-II-Hhq"/>
                             <constraint firstItem="EzH-lh-0QC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="HL4-cx-0ba"/>
+                            <constraint firstItem="55b-OX-eqG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KOk-Ua-XWK"/>
                             <constraint firstItem="bSK-vo-xt6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-5" id="MaB-76-1mv"/>
                             <constraint firstItem="bSK-vo-xt6" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-5" id="NDm-l0-bi1"/>
-                            <constraint firstItem="glK-pi-6q2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TWK-Z2-oMl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r92-Qc-x4u" secondAttribute="bottom" constant="120" id="YEY-lo-ZTk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EzH-lh-0QC" secondAttribute="bottom" id="gKl-p3-tWv"/>
                             <constraint firstItem="r92-Qc-x4u" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hFU-8R-9By"/>
+                            <constraint firstItem="r92-Qc-x4u" firstAttribute="top" secondItem="55b-OX-eqG" secondAttribute="bottom" constant="50" id="n3s-bk-O2Y"/>
                             <constraint firstItem="bSK-vo-xt6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="yZ2-8z-Jo1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -147,86 +147,19 @@
             </objects>
             <point key="canvasLocation" x="-199" y="133"/>
         </scene>
-        <!--Snap/Select a Photo-->
-        <scene sceneID="6WY-sa-K0I">
-            <objects>
-                <tableViewController id="pvw-3T-oRZ" customClass="SnapSelectPhotoViewController" customModule="WhatsThat" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="YMX-PU-eJO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <color key="separatorColor" red="0.96478992699999999" green="0.57065343859999995" blue="0.1243144199" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <sections>
-                            <tableViewSection id="2hz-WT-em9">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="58D-wS-Ma7" style="IBUITableViewCellStyleDefault" id="NCe-9H-XcA">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NCe-9H-XcA" id="Ak3-Hh-RA6">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Camera" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="58D-wS-Ma7">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="KlI-a3-LN9" kind="show" identifier="Camera" id="CL5-1o-NYM"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="RVE-cl-8jX" style="IBUITableViewCellStyleDefault" id="xLa-kA-6UG">
-                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xLa-kA-6UG" id="PDe-U2-wWI">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Photo Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RVE-cl-8jX">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="KlI-a3-LN9" kind="show" identifier="PhotoLibrary" id="nDk-md-Ic7"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="pvw-3T-oRZ" id="5Pv-Qa-UJx"/>
-                            <outlet property="delegate" destination="pvw-3T-oRZ" id="dLi-ee-Sbr"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Snap/Select a Photo" id="iyV-rc-gFH"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CdD-6c-JpE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-14" y="883"/>
-        </scene>
         <!--Photo Identification-->
         <scene sceneID="jrJ-8S-eBJ">
             <objects>
-                <viewController title="Photo Identification" id="KlI-a3-LN9" customClass="PhotoIdentificationViewController" customModule="WhatsThat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="photoIdentification" title="Photo Identification" id="KlI-a3-LN9" customClass="PhotoIdentificationViewController" customModule="WhatsThat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A3l-XP-IzK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q0w-xA-YoQ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="301.5"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="323.5"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="tgN-bg-cEq">
-                                <rect key="frame" x="0.0" y="365.5" width="375" height="301.5"/>
+                                <rect key="frame" x="0.0" y="343.5" width="375" height="323.5"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.96478992699999999" green="0.57065343859999995" blue="0.1243144199" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -291,7 +224,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92h-OX-9bA">
-                                <rect key="frame" x="0.0" y="67" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="23" width="375" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -336,7 +269,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROT-bT-Iho">
-                                <rect key="frame" x="15" y="108" width="345" height="492"/>
+                                <rect key="frame" x="15" y="64" width="345" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -379,7 +312,6 @@
         <image name="background" width="320" height="533"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ufH-3v-fU6"/>
-        <segue reference="CL5-1o-NYM"/>
+        <segue reference="VHm-N4-J7X"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,7 +12,7 @@ Description: The app lets users discover more information about things they see.
 7) ~~Allow the user to scroll through a Twitter results screen~~
 8) ~~Allow the user to favorite/unfavorite an identification from the description screen~~
 9) ~~Allow the user to share an identification/description from the description screen~~
-10) Allow the user to view a list of favorited identifications, tapping an identification will display a description screen (just like the prior requirement)
+10)  ~~Allow the user to view a list of favorited identifications, tapping an identification will display a description screen (just like the prior requirement)~~
 11) Never crash or leave user in a bad state! If something goes wrong, present a helpful alert to the user
 ---
 ## Implementation requirements:

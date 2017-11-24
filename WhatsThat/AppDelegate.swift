@@ -19,12 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize the Twitter Kit
         Twitter.sharedInstance().start(withConsumerKey:"Zct4IihPMR8S3MOWmzVt7DDge", consumerSecret:"BTQYjbwBL99Rx6VRrNL4wQ6jkxYksqh6ZIaRZji26hIKjEGox6")
         
-        let navigationBarAppearace = UINavigationBar.appearance()
-        // change the background color of the navigation bar
-        navigationBarAppearace.tintColor = UIColor.orange
+        let navigationBarAppearance = UINavigationBar.appearance()
+        // Change the background color of the navigation bar
+        navigationBarAppearance.tintColor = UIColor.orange
         
-        // change navigation item title color (same color as tint, 0xF69220)
-        navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.orange]
+        // Change navigation item title color (same color as tint, 0xF69220)
+        navigationBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.orange]
+        
+        // Change the app tint color for alerts, etc.
+        window?.tintColor = UIColor.orange
         
         return true
     }
