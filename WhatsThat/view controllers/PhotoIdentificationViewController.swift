@@ -49,7 +49,8 @@ class PhotoIdentificationViewController: UIViewController {
             // Save the image and pass the filename
             let compressionQuality: CGFloat = 0.7
             if let data = UIImageJPEGRepresentation(imageView.image!, compressionQuality) {
-                let filename = getDocumentsDirectory().appendingPathComponent(String.uniqueFilename())
+                // Create a unique filename
+                let filename = getDocumentsDirectory().appendingPathComponent(UUID().uuidString)
                 try? data.write(to: filename)
                 vc.filename = filename
             }

@@ -23,18 +23,22 @@ class MenuViewController: UIViewController {
         let alertController = UIAlertController(title: "Choose the image source:", message: nil, preferredStyle: .actionSheet)
         
         // Create camera button
+        let cameraImage = UIImage(named: "camera")
         let cameraButton = UIAlertAction(title: "Camera", style: .default, handler: { action in
             
             photoIdentificationVc.source = "Camera"
             self.navigationController?.show(photoIdentificationVc, sender: self)
         })
+        cameraButton.setValue(cameraImage?.withRenderingMode(.alwaysOriginal), forKey: "image")
         
         // Create photo library button
+        let photoLibraryImage = UIImage(named: "photo-library")
         let photoLibraryButton = UIAlertAction(title: "Photo Library", style: .default, handler: { action in
             
             photoIdentificationVc.source = "Photo Library"
             self.navigationController?.show(photoIdentificationVc, sender: self)
         })
+        photoLibraryButton.setValue(photoLibraryImage?.withRenderingMode(.alwaysOriginal), forKey: "image")
         
         // Create cancel button
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

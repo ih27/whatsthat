@@ -21,15 +21,4 @@ extension String {
             return NSAttributedString()
         }
     }
-    
-    //  Generates a unique string that can be used as a filename for storing data objects
-    static func uniqueFilename(withPrefix prefix: String? = nil) -> String {
-        let uniqueString = ProcessInfo.processInfo.globallyUniqueString
-        
-        if prefix != nil {
-            return "\(prefix!)-\(uniqueString)"
-        }
-        
-        return uniqueString
-    }
 }
