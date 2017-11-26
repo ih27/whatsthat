@@ -17,17 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Initialize the Twitter Kit
-        Twitter.sharedInstance().start(withConsumerKey:"Zct4IihPMR8S3MOWmzVt7DDge", consumerSecret:"BTQYjbwBL99Rx6VRrNL4wQ6jkxYksqh6ZIaRZji26hIKjEGox6")
+        Twitter.sharedInstance().start(withConsumerKey: Constants.twitterKey, consumerSecret: Constants.twitterSecret)
         
         let navigationBarAppearance = UINavigationBar.appearance()
         // Change the background color of the navigation bar
-        navigationBarAppearance.tintColor = UIColor.orange
+        navigationBarAppearance.tintColor = Constants.themeColor
         
         // Change navigation item title color (same color as tint, 0xF69220)
-        navigationBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.orange]
+        navigationBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Constants.themeColor]
         
         // Change the app tint color for alerts, etc.
-        window?.tintColor = UIColor.orange
+        window?.tintColor = Constants.themeColor
         
         return true
     }

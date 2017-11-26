@@ -12,6 +12,7 @@
 		D011DA041FB12C28002F95D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D011DA021FB12C28002F95D7 /* Main.storyboard */; };
 		D011DA061FB12C28002F95D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D011DA051FB12C28002F95D7 /* Assets.xcassets */; };
 		D011DA091FB12C28002F95D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D011DA071FB12C28002F95D7 /* LaunchScreen.storyboard */; };
+		D0254CA91FCA3F5500328134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0254CA81FCA3F5500328134 /* Constants.swift */; };
 		D04BB61F1FC26365003A556F /* SearchTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04BB61E1FC26365003A556F /* SearchTimelineViewController.swift */; };
 		D063089C1FC321F60017245B /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D063089B1FC321F60017245B /* Persistance.swift */; };
 		D063089E1FC324EB0017245B /* FavoriteIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D063089D1FC324EB0017245B /* FavoriteIdentification.swift */; };
@@ -39,6 +40,7 @@
 		D011DA051FB12C28002F95D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D011DA081FB12C28002F95D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D011DA0A1FB12C28002F95D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0254CA81FCA3F5500328134 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D04BB61E1FC26365003A556F /* SearchTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTimelineViewController.swift; sourceTree = "<group>"; };
 		D063089B1FC321F60017245B /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
 		D063089D1FC324EB0017245B /* FavoriteIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteIdentification.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				D09163501FBFC74E003D7A84 /* WikipediaAPIManager.swift */,
 				D097B01C1FC1411500A4DA82 /* String+Extensions.swift */,
 				D063089B1FC321F60017245B /* Persistance.swift */,
+				D0254CA81FCA3F5500328134 /* Constants.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0D37F381FBD49CF00AE0473 /* PhotoDetailsViewController.swift in Sources */,
+				D0254CA91FCA3F5500328134 /* Constants.swift in Sources */,
 				D04BB61F1FC26365003A556F /* SearchTimelineViewController.swift in Sources */,
 				D0B70FA31FBFA26F00701265 /* GoogleVisionResult.swift in Sources */,
 				D0B70F9F1FBF9F3800701265 /* GoogleVisionResponse.swift in Sources */,

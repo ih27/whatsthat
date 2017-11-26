@@ -17,31 +17,31 @@ class MenuViewController: UIViewController {
     @IBAction func cameraOrPhotoAlbumButtonTapped(_ sender: UIButton) {
         // Instantiate the storyboard and the PhotoIdentification VC
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let photoIdentificationVc = storyboard.instantiateViewController(withIdentifier: "photoIdentification") as! PhotoIdentificationViewController
+        let photoIdentificationVc = storyboard.instantiateViewController(withIdentifier: Constants.photoIdentificationId) as! PhotoIdentificationViewController
         
         // Create an action sheet alert controller
-        let alertController = UIAlertController(title: "Choose the image source:", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: Constants.cameraOrPhotoAlbumButtonAlertTitle, message: nil, preferredStyle: .actionSheet)
         
         // Create camera button
-        let cameraImage = UIImage(named: "camera")
-        let cameraButton = UIAlertAction(title: "Camera", style: .default, handler: { action in
+        let cameraImage = UIImage(named: Constants.cameraImageName)
+        let cameraButton = UIAlertAction(title: Constants.cameraSource, style: .default, handler: { action in
             
-            photoIdentificationVc.source = "Camera"
+            photoIdentificationVc.source = Constants.cameraSource
             self.navigationController?.show(photoIdentificationVc, sender: self)
         })
         cameraButton.setValue(cameraImage?.withRenderingMode(.alwaysOriginal), forKey: "image")
         
         // Create photo library button
-        let photoLibraryImage = UIImage(named: "photo-library")
-        let photoLibraryButton = UIAlertAction(title: "Photo Library", style: .default, handler: { action in
+        let photoLibraryImage = UIImage(named: Constants.photoLibraryImageName)
+        let photoLibraryButton = UIAlertAction(title: Constants.photoLibrarySource, style: .default, handler: { action in
             
-            photoIdentificationVc.source = "Photo Library"
+            photoIdentificationVc.source = Constants.photoLibrarySource
             self.navigationController?.show(photoIdentificationVc, sender: self)
         })
         photoLibraryButton.setValue(photoLibraryImage?.withRenderingMode(.alwaysOriginal), forKey: "image")
         
         // Create cancel button
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(title: Constants.cancelButtonTitle, style: .cancel, handler: nil)
         
         // Add the buttons to the alert controller
         alertController.addAction(cameraButton)

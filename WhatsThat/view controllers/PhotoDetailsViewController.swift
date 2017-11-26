@@ -22,11 +22,11 @@ class PhotoDetailsViewController: UIViewController {
     
     // Favorite button related variables
     var isFavorite = false
-    var iconName = "heart"
+    var iconName = Constants.favoriteImageName
     
     // The term passed from PhotoIdentification view
     var wikipediaTerm = ""
-    var wikipediaPageUrl = "https://en.wikipedia.org/?curid="
+    var wikipediaPageUrl = Constants.wikipediaPageUrl
     
     // The photo passed from PhotoIdentification view (in case if needed for the favorite thumbnail
     var filename: URL?
@@ -48,7 +48,7 @@ class PhotoDetailsViewController: UIViewController {
         DispatchQueue.main.async {
             self.isFavorite = Persistance.sharedInstance.doFavoritesContain(self.wikipediaTerm, self.filename!)
             if self.isFavorite {
-                self.iconName = "heart-filled"
+                self.iconName = Constants.favoriteFilledImageName
             }
             
             // Set the favorite button
@@ -61,13 +61,11 @@ class PhotoDetailsViewController: UIViewController {
         if let filename = filename {
             if isFavorite {
                 isFavorite = false
-                iconName = "heart"
-                // print("unfavorite")
+                iconName = Constants.favoriteImageName
                 deleteFavorite(with: filename)
             } else {
                 isFavorite = true
-                iconName = "heart-filled"
-                // print("favorite")
+                iconName = Constants.favoriteFilledImageName
                 saveFavorite(with: filename)
             }
         }

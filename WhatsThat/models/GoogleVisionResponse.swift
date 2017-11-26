@@ -9,5 +9,5 @@
 import Foundation
 
 struct GoogleVisionResponse: Decodable {
-    let labelAnnotations: [GoogleVisionLabel]
+    let labelAnnotations: [GoogleVisionLabel]?
 }

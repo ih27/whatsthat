@@ -48,6 +48,7 @@ class GoogleVisionAPIManager {
     // Parse the returned result to our label model object
     private func parseResults(with dataToParse: Data) {
         
+        
         let jsonDecoder = JSONDecoder()
         let decodedResult = try? jsonDecoder.decode(GoogleVisionResult.self, from: dataToParse)
         
@@ -58,10 +59,15 @@ class GoogleVisionAPIManager {
         let labelResults = result.responses[0].labelAnnotations
             
         // Results: sorted by score
-        let results = labelResults.sorted(by: { $0.score > $1.score })
+        if let results = labelResults?.sorted(by: { $0.score > $1.score }) {
+            // Return the results to the conformee
+            self.delegate?.resultsFound(results)
+        } else {
+            // Return the results to the conformee
+            self.delegate?.resultsNotFound("Google has nothing for this photo.")
+        }
         
-        // Return the results to the conformee
-        self.delegate?.resultsFound(results)
+        
     }
     
     // Return the JSON given the image for Cloud Vision API

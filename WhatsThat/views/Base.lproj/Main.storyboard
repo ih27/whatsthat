@@ -208,7 +208,7 @@
                     <connections>
                         <outlet property="imageView" destination="Q0w-xA-YoQ" id="aqN-DY-cBK"/>
                         <outlet property="tableView" destination="tgN-bg-cEq" id="Qik-2p-tER"/>
-                        <segue destination="tsc-Iw-OYN" kind="show" identifier="PhotoDetails" id="VHm-N4-J7X"/>
+                        <segue destination="tsc-Iw-OYN" kind="show" identifier="photoDetails" id="VHm-N4-J7X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fe-14-MqP" userLabel="First Responder" sceneMemberID="firstResponder"/>

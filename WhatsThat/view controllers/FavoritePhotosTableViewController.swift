@@ -40,7 +40,7 @@ class FavoritePhotosTableViewController: UITableViewController {
     
     // Set the properties for each cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoriteTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.favoriteCellId, for: indexPath) as! FavoriteTableViewCell
 
          // Set the label
         let favorite = favorites[indexPath.row]
@@ -56,7 +56,7 @@ class FavoritePhotosTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "PhotoDetails") {
+        if (segue.identifier == Constants.photoDetailsId) {
 
             let vc = segue.destination as! PhotoDetailsViewController
             let favorite = favorites[tableView.indexPathForSelectedRow!.row]

@@ -34,21 +34,20 @@ class PhotoIdentificationViewController: UIViewController {
         tableView.dataSource = self
         
         // Depending on the source, request the necessary permissions
-        if source == "Camera" {
+        if source == Constants.cameraSource {
             requestCameraPermissionsIfNeeded()
-        } else {
+        } else if source == Constants.photoLibrarySource {
             requestPhotoLibraryPermissionsIfNeeded()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "PhotoDetails") {
+        if (segue.identifier == Constants.photoDetailsId) {
             let vc = segue.destination as! PhotoDetailsViewController
             vc.wikipediaTerm = label
             
             // Save the image and pass the filename
-            let compressionQuality: CGFloat = 0.7
-            if let data = UIImageJPEGRepresentation(imageView.image!, compressionQuality) {
+            if let data = UIImageJPEGRepresentation(imageView.image!, Constants.compressionQuality) {
                 // Create a unique filename
                 let filename = getDocumentsDirectory().appendingPathComponent(UUID().uuidString)
                 try? data.write(to: filename)
@@ -71,9 +70,8 @@ class PhotoIdentificationViewController: UIViewController {
                     // Access is granted by user
                     self.snapPhoto()
                 } else {
-                    // User need to be directed to the app settings
-                    let message = "You need to turn the Camera access on"
-                    self.displayPermissionAlert(with: message)
+                    // User needs to be directed to the app settings
+                    self.displayPermissionAlert(with: Constants.cameraPermissionsErrorMessage)
                 }
             }
         }
@@ -92,9 +90,8 @@ class PhotoIdentificationViewController: UIViewController {
                     // Access is granted by user
                     self.selectPhotoFromLibrary()
                 } else {
-                    // User need to be directed to the app settings
-                    let message = "You need to give \"Read and Write\" access in Photos"
-                    self.displayPermissionAlert(with: message)
+                    // User needs to be directed to the app settings
+                    self.displayPermissionAlert(with: Constants.photoLibraryPermissionsErrorMessage)
                 }
             })
         }
@@ -127,7 +124,7 @@ class PhotoIdentificationViewController: UIViewController {
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         // Setting button action
-        let settingsAction = UIAlertAction(title: "Go to Settings", style: .default) { action in
+        let settingsAction = UIAlertAction(title: Constants.settingsButtonAlertTitle, style: .default) { action in
             // Get the app settings url
             guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
                 return
@@ -145,7 +142,7 @@ class PhotoIdentificationViewController: UIViewController {
         }
         
         // Cancel button action
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default){ action in
+        let cancelAction = UIAlertAction(title: Constants.cancelButtonTitle, style: .default){ action in
             self.navigationController?.popViewController(animated: true)
         }
         
@@ -206,7 +203,7 @@ extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewD
     // Set the preperties for each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "identifiedObjectCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifiedObjectCellId, for: indexPath)
         let label = results[indexPath.row]
         
         // Cell title
@@ -225,13 +222,14 @@ extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewD
         let cell = tableView.cellForRow(at: indexPath)
         label = cell?.textLabel?.text ?? ""
         
-        performSegue(withIdentifier: "PhotoDetails", sender: self)
+        performSegue(withIdentifier: Constants.photoDetailsId, sender: self)
     }
 }
 
 // Implement GoogleVisionAPIManager delegate functions
 extension PhotoIdentificationViewController: GoogleVisionDelegate {
     func resultsFound(_ results: [GoogleVisionLabel]) {
+        
         // Results sorted by confidence scores
         self.results = results
         
@@ -243,12 +241,11 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
     }
     
     func resultsNotFound(_ message: String) {
-        print("no API results :(")
         
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         // Cancel button action
-        let action = UIAlertAction(title: "OK", style: .default){ action in
+        let action = UIAlertAction(title: Constants.cancelButtonTitle, style: .default){ action in
             self.navigationController?.popViewController(animated: true)
         }
         

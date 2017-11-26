@@ -18,10 +18,10 @@ class SearchTimelineViewController: TWTRTimelineViewController {
         
         title = "Tweets with '\(twitterQuery)'"
         
-        let dataSource = TWTRSearchTimelineDataSource(searchQuery: twitterQuery+" filter:media", apiClient: TWTRAPIClient())
+        let dataSource = TWTRSearchTimelineDataSource(searchQuery: twitterQuery + Constants.twitterQueryFilter, apiClient: TWTRAPIClient())
         
         // Return only the most popular results in the response.
-        dataSource.resultType = "popular"
+        dataSource.resultType = Constants.twitterResultType
         
         // Show Tweet actions
         self.showTweetActions = true
