@@ -49,8 +49,13 @@ class GoogleVisionAPIManager {
     private func parseResults(with dataToParse: Data) {
         
         let jsonDecoder = JSONDecoder()
-        let result = try? jsonDecoder.decode(GoogleVisionResult.self, from: dataToParse)
-        let labelResults = result?.responses[0].labelAnnotations ?? [GoogleVisionLabel]()
+        let decodedResult = try? jsonDecoder.decode(GoogleVisionResult.self, from: dataToParse)
+        
+        guard let result = decodedResult else {
+            self.delegate?.resultsNotFound("Something went wrong.")
+            return
+        }
+        let labelResults = result.responses[0].labelAnnotations
             
         // Results: sorted by score
         let results = labelResults.sorted(by: { $0.score > $1.score })

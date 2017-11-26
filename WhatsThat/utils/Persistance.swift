@@ -22,12 +22,11 @@ class Persistance {
     
     // Check if the favorite with a given label and a filename exists
     func doFavoritesContain(_ label: String, _ filename: URL) -> Bool {
-        let image = UIImage(contentsOfFile: filename.path)!
-        
+        let image = UIImage(contentsOfFile: filename.path)
         let favorites = fetchIdentifications()
         
         for favorite in favorites {
-            let favImage = UIImage(contentsOfFile: favorite.filename.path)!
+            let favImage = UIImage(contentsOfFile: favorite.filename.path)
             if favorite.label == label && areEqualImages(image, favImage) {
                 return true
             }
@@ -53,12 +52,10 @@ class Persistance {
     // Save the passed in identification
     func saveIdentification(_ label: String, _ filename: URL) {
         
-        //print("\(label): \(image.debugDescription)")
         // Create a FavoriteIdentification object out of label and filename
         let identification = FavoriteIdentification(label: label, filename: filename)
-        
         var identifications = fetchIdentifications()
-        //print(identifications)
+        
         identifications.append(identification)
         let data = NSKeyedArchiver.archivedData(withRootObject: identifications)
         userDefaults.set(data, forKey: identificationsKey)
@@ -67,22 +64,18 @@ class Persistance {
     // Delete the identification matching the label and image
     func deleteIdentification(_ label: String, _ filename: URL) {
         
-        // print("\(label) <==> \(image.debugDescription)")
         let identifications = fetchIdentifications()
         // Filter the matched identification
         let modifiedIdentifications = identifications.filter { $0.label != label && $0.filename != filename }
-        // print("original: \(identifications)\nmodified: \(modifiedIdentifications)")
-        
-        // identifications.append(identification)
+        // TODO: delete the actual file!
         let data = NSKeyedArchiver.archivedData(withRootObject: modifiedIdentifications)
         userDefaults.set(data, forKey: identificationsKey)
     }
     
-    private func areEqualImages(_ lhs: UIImage, _ rhs: UIImage) -> Bool {
-        
+    private func areEqualImages(_ lhs: UIImage?, _ rhs: UIImage?) -> Bool {
+        guard let lhs = lhs, let rhs = rhs else { return false }
         guard let lhsData = UIImagePNGRepresentation(lhs) else { return false }
         guard let rhsData = UIImagePNGRepresentation(rhs) else { return false }
-        
         return lhsData == rhsData
     }
 }
