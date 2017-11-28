@@ -24,6 +24,7 @@ struct Constants {
     static let okButtonTitle = "OK"
     
     static let spinnerLabelText = "Abracadabra"
+    static let wikiNoExtractText = "No text available"
     
     static let cameraImageName = "camera"
     static let photoLibraryImageName = "photo-library"

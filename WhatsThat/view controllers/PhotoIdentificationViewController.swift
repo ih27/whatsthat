@@ -242,6 +242,7 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
         // Run in the main thread
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            // Stop the spinner
             MBProgressHUD.hide(for: self.tableView, animated: true)
         }
     }
@@ -250,6 +251,7 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
         
         // Run in the main thread
         DispatchQueue.main.async {
+            // Stop the spinner
             MBProgressHUD.hide(for: self.tableView, animated: true)
             
             let ac = UIAlertController(title: self.title, message: reason.rawValue, preferredStyle: .alert)
@@ -269,8 +271,7 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
                 ac.addAction(retryAction)
                 ac.addAction(cancelAction)
                 
-            case .badJSONResponse, .noLabelFound:
-                
+            case .badJSONResponse, .noLabelFound:                
                 // OK button action
                 let okAction = UIAlertAction(title: Constants.okButtonTitle, style: .default, handler: { action in
                     self.navigationController?.popViewController(animated: true)
@@ -278,14 +279,6 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
                 
                 ac.addAction(okAction)
             }
-            
-            // Cancel button action
-            let action = UIAlertAction(title: Constants.cancelButtonTitle, style: .default){ action in
-                self.navigationController?.popViewController(animated: true)
-            }
-            
-            // Add the action
-            ac.addAction(action)
             
             // Present the alert
             self.present(ac, animated: true)

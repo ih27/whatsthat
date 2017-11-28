@@ -20,6 +20,8 @@ class PhotoDetailsViewController: UIViewController {
     @IBOutlet weak var tweetsButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     
+    let manager = WikipediaAPIManager()
+    
     // Favorite button related variables
     var isFavorite = false
     var iconName = Constants.favoriteImageName
@@ -32,14 +34,18 @@ class PhotoDetailsViewController: UIViewController {
     var filename: URL?
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
+        // Set the Wikipedia API delegate
+        manager.delegate = self
         
         // Set the label text
         idLabel.text = wikipediaTerm.capitalized
         
         // Start a spinner
-        MBProgressHUD.showAdded(to: self.wikiExtractTextView, animated: true)
+        let spinner = MBProgressHUD.showAdded(to: self.wikiExtractTextView, animated: true)
+        spinner.label.text = Constants.spinnerLabelText
+        spinner.contentColor = Constants.themeColor
         
         // Get the Wikipedia APi results
         fetchResults(for: wikipediaTerm)        
@@ -121,17 +127,15 @@ class PhotoDetailsViewController: UIViewController {
     // Fetch results with the help of WikipediaAPIManager
     private func fetchResults(for query: String) {
         
-        let manager = WikipediaAPIManager()
-        manager.delegate = self
         manager.fetchExtract(for: query)
     }
 }
 
 // Implement WikipediaAPIManager delegate functions
 extension PhotoDetailsViewController: WikipediaDelegate {
-    func resultFound(_ result: WikipediaResult?) {
+    func resultFound(_ result: WikipediaResult) {
         
-        guard let infoText = result?.extract, let pageid = result?.pageid else {
+        guard let pageid = result.pageid else {
             return
         }
         
@@ -139,7 +143,7 @@ extension PhotoDetailsViewController: WikipediaDelegate {
         self.wikipediaPageUrl += String(pageid)
         
         // Convert to HTML text with the help String extension function
-        let attributedText = infoText.convertHtml()
+        let attributedText = result.extract?.convertHtml()
         
         // Run in the main thread
         DispatchQueue.main.async {
@@ -154,8 +158,47 @@ extension PhotoDetailsViewController: WikipediaDelegate {
         }
     }
     
-    func resultNotFound() {
+    func resultNotFound(reason: WikipediaAPIManager.FailureReason) {
         
-        print("no API results :(")
+        // Run in the main thread
+        DispatchQueue.main.async {
+            // Stop the spinner
+            MBProgressHUD.hide(for: self.wikiExtractTextView, animated: true)
+            
+            let ac = UIAlertController(title: self.title, message: reason.rawValue, preferredStyle: .alert)
+            
+            switch reason {
+            case .networkRequestFailed:
+                let retryAction = UIAlertAction(title: Constants.retryButtonTitle, style: .default, handler: { action in
+                    self.fetchResults(for: self.wikipediaTerm)
+                })
+                
+                // Cancel button action
+                let cancelAction = UIAlertAction(title: Constants.cancelButtonTitle, style: .default){ action in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                
+                ac.addAction(retryAction)
+                ac.addAction(cancelAction)
+                
+            case .badJSONResponse:
+                // OK button action
+                let okAction = UIAlertAction(title: Constants.okButtonTitle, style: .default, handler: { action in
+                    self.navigationController?.popViewController(animated: true)
+                })
+                
+                ac.addAction(okAction)
+            
+            case .noExtractFound:
+                // OK button action
+                let okAction = UIAlertAction(title: Constants.okButtonTitle, style: .default, handler: { action in
+                    self.wikiExtractTextView.text = Constants.wikiNoExtractText
+                })
+                
+                ac.addAction(okAction)
+            }
+            // Present the alert
+            self.present(ac, animated: true)
+        }
     }
 }
