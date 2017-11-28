@@ -18,6 +18,14 @@ class FavoritePhotosTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set the map button
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: Constants.mapImageName), style: .plain, target: self, action: #selector(mapIconTapped))
+    }
+    
+    // Favorites map action
+    @objc func mapIconTapped() {
+        performSegue(withIdentifier: Constants.favoritesMapId, sender: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {

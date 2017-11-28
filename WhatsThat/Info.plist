@@ -38,6 +38,8 @@
 	<string>The app needs to use camera to capture the image</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>The app needs to use photo library to select the image</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The app needs to use location to show you where you took your favorite photos</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

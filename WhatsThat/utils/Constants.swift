@@ -16,6 +16,7 @@ struct Constants {
     static let photoDetailsId = "photoDetails"
     static let identifiedObjectCellId = "identifiedObjectCell"
     static let favoriteCellId = "favoriteCell"
+    static let favoritesMapId = "favoritesMap"
     
     static let cameraOrPhotoAlbumButtonAlertTitle = "Choose the image source:"
     static let settingsButtonAlertTitle = "Go to Settings"
@@ -30,6 +31,7 @@ struct Constants {
     static let photoLibraryImageName = "photo-library"
     static let favoriteImageName = "heart"
     static let favoriteFilledImageName = "heart-filled"
+    static let mapImageName = "map"
     
     static let cameraSource = "Camera"
     static let photoLibrarySource = "Photo Library"
