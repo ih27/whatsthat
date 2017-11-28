@@ -11,10 +11,16 @@ import UIKit
 
 protocol GoogleVisionDelegate {
     func resultsFound(_ results: [GoogleVisionLabel])
-    func resultsNotFound(_ message: String)
+    func resultsNotFound(reason: GoogleVisionAPIManager.FailureReason)
 }
 
 class GoogleVisionAPIManager {
+    
+    enum FailureReason: String {
+        case networkRequestFailed
+        case badJSONResponse
+        case noLabelFound
+    }
     
     var delegate: GoogleVisionDelegate?
     
@@ -34,7 +40,7 @@ class GoogleVisionAPIManager {
             
             guard let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 print(error?.localizedDescription ?? "")
-                self.delegate?.resultsNotFound("Network error occurred.")
+                self.delegate?.resultsNotFound(reason: .networkRequestFailed)
                 return
             }
             
@@ -53,7 +59,7 @@ class GoogleVisionAPIManager {
         let decodedResult = try? jsonDecoder.decode(GoogleVisionResult.self, from: dataToParse)
         
         guard let result = decodedResult else {
-            self.delegate?.resultsNotFound("Something went wrong.")
+            self.delegate?.resultsNotFound(reason: .badJSONResponse)
             return
         }
         let labelResults = result.responses[0].labelAnnotations
@@ -64,7 +70,7 @@ class GoogleVisionAPIManager {
             self.delegate?.resultsFound(results)
         } else {
             // Return the results to the conformee
-            self.delegate?.resultsNotFound("Google has nothing for this photo.")
+            self.delegate?.resultsNotFound(reason: .noLabelFound)
         }
         
         
