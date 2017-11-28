@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct Constants {
-    static let themeColor = UIColor.orange
+    static let themeColor: UIColor = .orange
     
     static let photoIdentificationId = "photoIdentification"
     static let photoDetailsId = "photoDetails"

@@ -17,6 +17,8 @@ class PhotoIdentificationViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
+    let manager = GoogleVisionAPIManager()
+    
     // A variable to hold Google Vision API results
     var results = [GoogleVisionLabel]()
     
@@ -28,6 +30,9 @@ class PhotoIdentificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set the Google Vision API delegate
+        manager.delegate = self
         
         // Set the necessary delegates for the table view
         tableView.delegate = self
@@ -156,11 +161,14 @@ class PhotoIdentificationViewController: UIViewController {
     
     // Fetch results with the help of GoogleVisionAPIManager
     private func fetchResults(for image: UIImage) {
-        let manager = GoogleVisionAPIManager()
-        manager.delegate = self
+        // let manager = GoogleVisionAPIManager()
+        // manager.delegate = self
         
         // Start a spinner
-        MBProgressHUD.showAdded(to: self.tableView, animated: true)
+        let spinner = MBProgressHUD.showAdded(to: self.tableView, animated: true)
+        spinner.label.text = "Loading"
+        spinner.contentColor = Constants.themeColor
+        
         manager.fetchIdentifications(for: image)
     }
 }
@@ -242,18 +250,23 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
     
     func resultsNotFound(_ message: String) {
         
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        // Cancel button action
-        let action = UIAlertAction(title: Constants.cancelButtonTitle, style: .default){ action in
-            self.navigationController?.popViewController(animated: true)
+        // Run in the main thread
+        DispatchQueue.main.async {
+            MBProgressHUD.hide(for: self.tableView, animated: true)
+            
+            let ac = UIAlertController(title: self.title, message: message, preferredStyle: .alert)
+            
+            // Cancel button action
+            let action = UIAlertAction(title: Constants.cancelButtonTitle, style: .default){ action in
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+            // Add the action
+            ac.addAction(action)
+            
+            // Present the alert
+            self.present(ac, animated: true)
         }
-        
-        // Add the action
-        ac.addAction(action)
-        
-        // Present the alert
-        present(ac, animated: true)        
     }
 }
 

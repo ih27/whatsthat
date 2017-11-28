@@ -14,5 +14,4 @@ struct WikipediaResult: Decodable {
     let ns: Int
     let title: String
     let extract: String?
-    // let missing: String?
 }
