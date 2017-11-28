@@ -17,9 +17,9 @@ protocol GoogleVisionDelegate {
 class GoogleVisionAPIManager {
     
     enum FailureReason: String {
-        case networkRequestFailed
-        case badJSONResponse
-        case noLabelFound
+        case networkRequestFailed = "Network request failed, please try again."
+        case badJSONResponse = "Something went wrong."
+        case noLabelFound = "The identification is not found for this photo."
     }
     
     var delegate: GoogleVisionDelegate?
@@ -54,7 +54,6 @@ class GoogleVisionAPIManager {
     // Parse the returned result to our label model object
     private func parseResults(with dataToParse: Data) {
         
-        
         let jsonDecoder = JSONDecoder()
         let decodedResult = try? jsonDecoder.decode(GoogleVisionResult.self, from: dataToParse)
         
@@ -62,6 +61,7 @@ class GoogleVisionAPIManager {
             self.delegate?.resultsNotFound(reason: .badJSONResponse)
             return
         }
+        
         let labelResults = result.responses[0].labelAnnotations
             
         // Results: sorted by score

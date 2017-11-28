@@ -161,12 +161,10 @@ class PhotoIdentificationViewController: UIViewController {
     
     // Fetch results with the help of GoogleVisionAPIManager
     private func fetchResults(for image: UIImage) {
-        // let manager = GoogleVisionAPIManager()
-        // manager.delegate = self
         
         // Start a spinner
         let spinner = MBProgressHUD.showAdded(to: self.tableView, animated: true)
-        spinner.label.text = "Loading"
+        spinner.label.text = Constants.spinnerLabelText
         spinner.contentColor = Constants.themeColor
         
         manager.fetchIdentifications(for: image)
@@ -248,13 +246,38 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
         }
     }
     
-    func resultsNotFound(_ message: String) {
+    func resultsNotFound(reason: GoogleVisionAPIManager.FailureReason) {
         
         // Run in the main thread
         DispatchQueue.main.async {
             MBProgressHUD.hide(for: self.tableView, animated: true)
             
-            let ac = UIAlertController(title: self.title, message: message, preferredStyle: .alert)
+            let ac = UIAlertController(title: self.title, message: reason.rawValue, preferredStyle: .alert)
+            
+            switch reason {
+            case .networkRequestFailed:
+                let retryAction = UIAlertAction(title: Constants.retryButtonTitle, style: .default, handler: { action in
+                    // ! won't cause issue here since this happens after initial network request fails
+                    self.fetchResults(for: self.imageView.image!)
+                })
+                
+                // Cancel button action
+                let cancelAction = UIAlertAction(title: Constants.cancelButtonTitle, style: .default){ action in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                
+                ac.addAction(retryAction)
+                ac.addAction(cancelAction)
+                
+            case .badJSONResponse, .noLabelFound:
+                
+                // OK button action
+                let okAction = UIAlertAction(title: Constants.okButtonTitle, style: .default, handler: { action in
+                    self.navigationController?.popViewController(animated: true)
+                })
+                
+                ac.addAction(okAction)
+            }
             
             // Cancel button action
             let action = UIAlertAction(title: Constants.cancelButtonTitle, style: .default){ action in

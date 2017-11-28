@@ -20,6 +20,10 @@ struct Constants {
     static let cameraOrPhotoAlbumButtonAlertTitle = "Choose the image source:"
     static let settingsButtonAlertTitle = "Go to Settings"
     static let cancelButtonTitle = "Cancel"
+    static let retryButtonTitle = "Retry"
+    static let okButtonTitle = "OK"
+    
+    static let spinnerLabelText = "Abracadabra"
     
     static let cameraImageName = "camera"
     static let photoLibraryImageName = "photo-library"
