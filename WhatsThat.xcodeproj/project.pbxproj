@@ -17,7 +17,7 @@
 		D057A0471FCDCE0700159677 /* LocationFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057A0461FCDCE0700159677 /* LocationFinder.swift */; };
 		D063089C1FC321F60017245B /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D063089B1FC321F60017245B /* Persistance.swift */; };
 		D063089E1FC324EB0017245B /* FavoriteIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D063089D1FC324EB0017245B /* FavoriteIdentification.swift */; };
-		D064381B1FCDFE7E007AC604 /* FavoritePhotosMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D064381A1FCDFE7E007AC604 /* FavoritePhotosMapViewController.swift */; };
+		D063120B1FCE13FF00F6444A /* FavoritePhotosMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D063120A1FCE13FF00F6444A /* FavoritePhotosMapViewController.swift */; };
 		D06A5DF11FB688A500684AFE /* PhotoIdentificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A5DF01FB688A500684AFE /* PhotoIdentificationViewController.swift */; };
 		D06A5DF31FB6A9C800684AFE /* GoogleVisionAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A5DF21FB6A9C800684AFE /* GoogleVisionAPIManager.swift */; };
 		D09163511FBFC74F003D7A84 /* WikipediaAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09163501FBFC74E003D7A84 /* WikipediaAPIManager.swift */; };
@@ -47,7 +47,7 @@
 		D057A0461FCDCE0700159677 /* LocationFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFinder.swift; sourceTree = "<group>"; };
 		D063089B1FC321F60017245B /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
 		D063089D1FC324EB0017245B /* FavoriteIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteIdentification.swift; sourceTree = "<group>"; };
-		D064381A1FCDFE7E007AC604 /* FavoritePhotosMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosMapViewController.swift; sourceTree = "<group>"; };
+		D063120A1FCE13FF00F6444A /* FavoritePhotosMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotosMapViewController.swift; sourceTree = "<group>"; };
 		D06A5DF01FB688A500684AFE /* PhotoIdentificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIdentificationViewController.swift; sourceTree = "<group>"; };
 		D06A5DF21FB6A9C800684AFE /* GoogleVisionAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVisionAPIManager.swift; sourceTree = "<group>"; };
 		D071EBFC1FB22A0900A65760 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 				D0D37F371FBD49CF00AE0473 /* PhotoDetailsViewController.swift */,
 				D04BB61E1FC26365003A556F /* SearchTimelineViewController.swift */,
 				D0EEF5D11FC3383600A0FC04 /* FavoritePhotosTableViewController.swift */,
-				D064381A1FCDFE7E007AC604 /* FavoritePhotosMapViewController.swift */,
+				D063120A1FCE13FF00F6444A /* FavoritePhotosMapViewController.swift */,
 			);
 			path = "view controllers";
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 				D0FA3F0C1FBB59C300250E2C /* GoogleVisionLabel.swift in Sources */,
 				D063089E1FC324EB0017245B /* FavoriteIdentification.swift in Sources */,
 				D06A5DF11FB688A500684AFE /* PhotoIdentificationViewController.swift in Sources */,
-				D064381B1FCDFE7E007AC604 /* FavoritePhotosMapViewController.swift in Sources */,
+				D063120B1FCE13FF00F6444A /* FavoritePhotosMapViewController.swift in Sources */,
 				D06A5DF31FB6A9C800684AFE /* GoogleVisionAPIManager.swift in Sources */,
 				D09163511FBFC74F003D7A84 /* WikipediaAPIManager.swift in Sources */,
 				D011D9FF1FB12C28002F95D7 /* AppDelegate.swift in Sources */,

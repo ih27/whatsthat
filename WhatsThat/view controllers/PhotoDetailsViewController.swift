@@ -28,10 +28,15 @@ class PhotoDetailsViewController: UIViewController {
     
     // The term passed from PhotoIdentification view
     var wikipediaTerm = ""
+    
     var wikipediaPageUrl = Constants.wikipediaPageUrl
     
     // The photo passed from PhotoIdentification view (in case if needed for the favorite thumbnail
     var filename: URL?
+    
+    // The coordinates passed from PhotoIdentification view
+    var photoLatitude: Double?
+    var photoLongitude: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +87,7 @@ class PhotoDetailsViewController: UIViewController {
     
     // Save the current label and its associated image filename as a favorite
     func saveFavorite(with filename: URL) {
-        Persistance.sharedInstance.saveIdentification(wikipediaTerm, filename)
+        Persistance.sharedInstance.saveIdentification(label: wikipediaTerm, filename: filename, latitude: photoLatitude, longitude: photoLongitude)
     }
     
     // Delete the current label and its associated image from favorites list

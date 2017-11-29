@@ -50,10 +50,10 @@ class Persistance {
     }
     
     // Save the passed in identification
-    func saveIdentification(_ label: String, _ filename: URL) {
+    func saveIdentification(label: String, filename: URL, latitude: Double?, longitude: Double?) {
         
         // Create a FavoriteIdentification object out of label and filename
-        let identification = FavoriteIdentification(label: label, filename: filename)
+        let identification = FavoriteIdentification(label: label, filename: filename, latitude: latitude, longitude: longitude)
         var identifications = fetchIdentifications()
         
         identifications.append(identification)
@@ -67,7 +67,7 @@ class Persistance {
         let identifications = fetchIdentifications()
         // Filter the matched identification
         let modifiedIdentifications = identifications.filter { $0.label != label && $0.filename != filename }
-        // TODO: delete the actual file!
+        
         let data = NSKeyedArchiver.archivedData(withRootObject: modifiedIdentifications)
         userDefaults.set(data, forKey: identificationsKey)
     }

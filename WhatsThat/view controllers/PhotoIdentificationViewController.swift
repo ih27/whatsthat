@@ -18,9 +18,12 @@ class PhotoIdentificationViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let manager = GoogleVisionAPIManager()
+    let locationFinder = LocationFinder()
     
     // A variable to hold Google Vision API results
     var results = [GoogleVisionLabel]()
+    var currentLatitude: CLLocationDegrees?
+    var currentLongitude: CLLocationDegrees?
     
     // A variable to pass to Wikipedia API
     var label = ""
@@ -33,6 +36,9 @@ class PhotoIdentificationViewController: UIViewController {
         
         // Set the Google Vision API delegate
         manager.delegate = self
+        
+        // Set the LocationFinder delegate
+        locationFinder.delegate = self
         
         // Set the necessary delegates for the table view
         tableView.delegate = self
@@ -50,6 +56,8 @@ class PhotoIdentificationViewController: UIViewController {
         if (segue.identifier == Constants.photoDetailsId) {
             let vc = segue.destination as! PhotoDetailsViewController
             vc.wikipediaTerm = label
+            vc.photoLatitude = currentLatitude
+            vc.photoLongitude = currentLongitude
             
             // Save the image and pass the filename
             if let data = UIImageJPEGRepresentation(imageView.image!, Constants.compressionQuality) {
@@ -104,6 +112,9 @@ class PhotoIdentificationViewController: UIViewController {
     
     // Present the camera image picker to snap a photo
     private func snapPhoto() {
+        // Request location info too for favorites
+        locationFinder.findLocation()
+        
         // Set the camera image picker
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .camera
@@ -283,6 +294,20 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
             // Present the alert
             self.present(ac, animated: true)
         }
+    }
+}
+
+// Implement LocationFinder delegate functions
+extension PhotoIdentificationViewController: LocationFinderDelegate {
+    func locationFound(latitude: Double, longitude: Double) {
+        
+        currentLatitude = latitude
+        currentLongitude = longitude
+    }
+    
+    func locationNotFound() {
+        // TODO
+        print("location not found")
     }
 }
 
