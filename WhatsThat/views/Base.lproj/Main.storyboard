@@ -125,7 +125,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="Fnz-8r-Kjy" kind="show" identifier="favoritesMap" id="YRZ-Xm-Exu"/>
+                        <segue destination="9pr-Y1-G1j" kind="show" identifier="favoritesMap" id="14L-ha-QGG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5E-Ew-g5T" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -133,30 +133,35 @@
             <point key="canvasLocation" x="1376" y="133"/>
         </scene>
         <!--Favorites Map-->
-        <scene sceneID="4EY-Iv-izT">
+        <scene sceneID="o2h-5k-Zim">
             <objects>
-                <viewController title="Favorites Map" id="Fnz-8r-Kjy" customClass="FavoritePhotosMapViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WAz-Pr-6fL">
+                <viewController title="Favorites Map" id="9pr-Y1-G1j" customClass="FavoritePhotosMapViewController" customModule="WhatsThat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zYG-um-67C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yaD-cZ-u60">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oe0-rD-LVs">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="5WJ-Qb-dBg" firstAttribute="trailing" secondItem="yaD-cZ-u60" secondAttribute="trailing" id="6cg-uT-6T3"/>
-                            <constraint firstItem="yaD-cZ-u60" firstAttribute="leading" secondItem="5WJ-Qb-dBg" secondAttribute="leading" id="C4i-a8-N2h"/>
-                            <constraint firstItem="5WJ-Qb-dBg" firstAttribute="bottom" secondItem="yaD-cZ-u60" secondAttribute="bottom" id="ZpZ-cw-EQY"/>
-                            <constraint firstItem="yaD-cZ-u60" firstAttribute="top" secondItem="WAz-Pr-6fL" secondAttribute="top" id="byO-ZM-UdF"/>
+                            <constraint firstItem="oe0-rD-LVs" firstAttribute="top" secondItem="GJX-y0-bEi" secondAttribute="top" id="3Ea-ck-fGI"/>
+                            <constraint firstItem="GJX-y0-bEi" firstAttribute="bottom" secondItem="oe0-rD-LVs" secondAttribute="bottom" id="AoJ-SC-xw3"/>
+                            <constraint firstItem="oe0-rD-LVs" firstAttribute="leading" secondItem="GJX-y0-bEi" secondAttribute="leading" id="UYV-VA-54n"/>
+                            <constraint firstItem="GJX-y0-bEi" firstAttribute="trailing" secondItem="oe0-rD-LVs" secondAttribute="trailing" id="eX6-Qn-akk"/>
+                            <constraint firstItem="oe0-rD-LVs" firstAttribute="top" secondItem="GJX-y0-bEi" secondAttribute="top" id="fuD-Xp-dJS"/>
+                            <constraint firstItem="GJX-y0-bEi" firstAttribute="bottom" secondItem="oe0-rD-LVs" secondAttribute="bottom" id="v4s-zg-HRw"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="5WJ-Qb-dBg"/>
+                        <viewLayoutGuide key="safeArea" id="GJX-y0-bEi"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="oe0-rD-LVs" id="lGv-4y-rBq"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="90v-aI-Qhk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V3F-FQ-jOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2452" y="-370"/>
+            <point key="canvasLocation" x="2326" y="-264"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bun-7T-Zzh">
@@ -253,7 +258,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92h-OX-9bA">
-                                <rect key="frame" x="0.0" y="23" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="67" width="375" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -298,7 +303,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROT-bT-Iho">
-                                <rect key="frame" x="15" y="64" width="345" height="536"/>
+                                <rect key="frame" x="15" y="108" width="345" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -341,6 +346,6 @@
         <image name="background" width="320" height="533"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VHm-N4-J7X"/>
+        <segue reference="ufH-3v-fU6"/>
     </inferredMetricsTieBreakers>
 </document>
