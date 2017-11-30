@@ -37,6 +37,11 @@ class FavoriteIdentification: NSObject, MKAnnotation {
         }
     }
     
+    // A computed property for map annotations
+    var title: String? {
+        return label
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         label = aDecoder.decodeObject(forKey: labelKey) as! String
         filename = aDecoder.decodeObject(forKey: filenameKey) as! URL
