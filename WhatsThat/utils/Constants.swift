@@ -40,6 +40,7 @@ struct Constants {
     
     static let cameraPermissionsErrorMessage = "You need to turn the Camera access on"
     static let photoLibraryPermissionsErrorMessage = "You need to give \"Read and Write\" access in Photos"
+    static let locationPermissionsErrorMessage = "You need to give \"While Using the App\" access in Location"
     
     static let wikipediaPageUrl = "https://en.wikipedia.org/?curid="
     

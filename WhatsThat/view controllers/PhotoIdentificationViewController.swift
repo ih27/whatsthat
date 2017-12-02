@@ -300,14 +300,14 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
 // Implement LocationFinder delegate functions
 extension PhotoIdentificationViewController: LocationFinderDelegate {
     func locationFound(latitude: Double, longitude: Double) {
-        
+        // Save the coordinates
         currentLatitude = latitude
         currentLongitude = longitude
     }
     
     func locationNotFound() {
-        // TODO
-        print("location not found")
+        // Display an alert
+        displayPermissionAlert(with: Constants.locationPermissionsErrorMessage)
     }
 }
 
