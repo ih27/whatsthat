@@ -61,11 +61,14 @@ class FavoritePhotosMapViewController: UIViewController {
 
     // Add favorited annotations to the map
     private func addMapAnnotations() {
+        // Clear the annotations in case any was unfavorited in details view
+        mapView.removeAnnotations(favorites)
+        
         // Fetch the favorites
         favorites = Persistance.sharedInstance.fetchIdentifications()
-        favorites.forEach { favorite in
-            mapView.addAnnotation(favorite)
-        }
+        
+        // Add the favorites to our map
+        mapView.addAnnotations(favorites)
     }
 }
 
