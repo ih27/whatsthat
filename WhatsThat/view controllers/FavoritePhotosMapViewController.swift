@@ -28,6 +28,11 @@ class FavoritePhotosMapViewController: UIViewController {
         
         // Set the map view delegate to the the class itself
         mapView.delegate = self
+        
+        if #available(iOS 11.0, *) {
+            // Show the custom annotation view
+            mapView.register(FavoriteView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,30 +67,30 @@ extension FavoritePhotosMapViewController: MKMapViewDelegate {
         isInitialLocation = false        
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        // 2
-        guard let annotation = annotation as? FavoriteIdentification else { return nil }
-        // 3
-        let identifier = "marker"
-        if #available(iOS 11.0, *) {
-            var view: MKMarkerAnnotationView
-            // 4
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-                as? MKMarkerAnnotationView {
-                dequeuedView.annotation = annotation
-                view = dequeuedView
-            } else {
-                // 5
-                view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            }
-            return view
-        } else {
-            return nil
-        }
-    }
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        // 2
+//        guard let annotation = annotation as? FavoriteIdentification else { return nil }
+//        // 3
+//        let identifier = "marker"
+//        if #available(iOS 11.0, *) {
+//            var view: MKMarkerAnnotationView
+//            // 4
+//            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+//                as? MKMarkerAnnotationView {
+//                dequeuedView.annotation = annotation
+//                view = dequeuedView
+//            } else {
+//                // 5
+//                view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//                view.canShowCallout = true
+//                view.calloutOffset = CGPoint(x: -5, y: 5)
+//                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+//            }
+//            return view
+//        } else {
+//            return nil
+//        }
+//    }
 }
 
 // Implement LocationFinder delegate functions

@@ -20,6 +20,7 @@
 		D063089E1FC324EB0017245B /* FavoriteIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D063089D1FC324EB0017245B /* FavoriteIdentification.swift */; };
 		D06A5DF11FB688A500684AFE /* PhotoIdentificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A5DF01FB688A500684AFE /* PhotoIdentificationViewController.swift */; };
 		D06A5DF31FB6A9C800684AFE /* GoogleVisionAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A5DF21FB6A9C800684AFE /* GoogleVisionAPIManager.swift */; };
+		D08F2CA51FD25634008F30BC /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08F2CA41FD25634008F30BC /* FavoriteView.swift */; };
 		D09163511FBFC74F003D7A84 /* WikipediaAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09163501FBFC74E003D7A84 /* WikipediaAPIManager.swift */; };
 		D09163531FBFC7B6003D7A84 /* WikipediaResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09163521FBFC7B6003D7A84 /* WikipediaResult.swift */; };
 		D097B01D1FC1411500A4DA82 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D097B01C1FC1411500A4DA82 /* String+Extensions.swift */; };
@@ -51,6 +52,7 @@
 		D06A5DF01FB688A500684AFE /* PhotoIdentificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIdentificationViewController.swift; sourceTree = "<group>"; };
 		D06A5DF21FB6A9C800684AFE /* GoogleVisionAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleVisionAPIManager.swift; sourceTree = "<group>"; };
 		D071EBFC1FB22A0900A65760 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D08F2CA41FD25634008F30BC /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		D09163501FBFC74E003D7A84 /* WikipediaAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaAPIManager.swift; sourceTree = "<group>"; };
 		D09163521FBFC7B6003D7A84 /* WikipediaResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaResult.swift; sourceTree = "<group>"; };
 		D097B01C1FC1411500A4DA82 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				D011DA051FB12C28002F95D7 /* Assets.xcassets */,
 				D011DA071FB12C28002F95D7 /* LaunchScreen.storyboard */,
 				D0EEF5D31FC3431C00A0FC04 /* FavoriteTableViewCell.swift */,
+				D08F2CA41FD25634008F30BC /* FavoriteView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -269,10 +272,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WhatsThat/Pods-WhatsThat-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +321,7 @@
 				D09163531FBFC7B6003D7A84 /* WikipediaResult.swift in Sources */,
 				D057A0471FCDCE0700159677 /* LocationFinder.swift in Sources */,
 				D097B01D1FC1411500A4DA82 /* String+Extensions.swift in Sources */,
+				D08F2CA51FD25634008F30BC /* FavoriteView.swift in Sources */,
 				D0EEF5D41FC3431C00A0FC04 /* FavoriteTableViewCell.swift in Sources */,
 				D0EEF5D21FC3383600A0FC04 /* FavoritePhotosTableViewController.swift in Sources */,
 				D011DA011FB12C28002F95D7 /* MenuViewController.swift in Sources */,
