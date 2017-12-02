@@ -20,7 +20,7 @@ class Persistance {
     private init() {
     }
     
-    // Check if the favorite with a given label and a filename exists
+    // Check if the favorite with a given label and a image exists
     func doFavoritesContain(_ label: String, _ filename: URL) -> Bool {
         let image = UIImage(contentsOfFile: filename.path)
         let favorites = fetchIdentifications()
@@ -74,8 +74,8 @@ class Persistance {
     
     private func areEqualImages(_ lhs: UIImage?, _ rhs: UIImage?) -> Bool {
         guard let lhs = lhs, let rhs = rhs else { return false }
-        guard let lhsData = UIImagePNGRepresentation(lhs) else { return false }
-        guard let rhsData = UIImagePNGRepresentation(rhs) else { return false }
+        guard let lhsData = UIImageJPEGRepresentation(lhs, Constants.compressionQuality) else { return false }
+        guard let rhsData = UIImageJPEGRepresentation(rhs, Constants.compressionQuality) else { return false }
         return lhsData == rhsData
     }
 }

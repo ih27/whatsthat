@@ -23,12 +23,14 @@ class WikipediaAPIManager {
     
     var delegate: WikipediaDelegate?
     
-    // API related constant.
-    let apiUrl = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&titles="
-    
     func fetchExtract(for query: String) {
-        let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let requestURL = URL(string: apiUrl+escapedQuery)!
+        // Escape the query for multi word searches
+        guard let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            self.delegate?.resultNotFound(reason: .badJSONResponse)
+            return
+        }
+        let wikiApiUrl = Constants.wikipediaExtractUrl + escapedQuery
+        let requestURL = URL(string: wikiApiUrl)!
         let urlRequest = URLRequest(url: requestURL)
         let task = URLSession.shared.dataTask(with: urlRequest) {
             (data, response, error) -> Void in
@@ -78,9 +80,12 @@ class WikipediaAPIManager {
         }
         
         // Try to cast the page related info as Data and decode to WikipediaResult model
-        let page = try? JSONSerialization.data(withJSONObject: pageDictionary)
+        guard let page = try? JSONSerialization.data(withJSONObject: pageDictionary) else {
+            self.delegate?.resultNotFound(reason: .badJSONResponse)
+            return
+        }
         let jsonDecoder = JSONDecoder()
-        let decodedResult = try? jsonDecoder.decode(WikipediaResult.self, from: page!)
+        let decodedResult = try? jsonDecoder.decode(WikipediaResult.self, from: page)
         guard let result = decodedResult else {
             self.delegate?.resultNotFound(reason: .badJSONResponse)
             return
@@ -92,7 +97,7 @@ class WikipediaAPIManager {
             return
         }
 
-        // Return the result to the conformee
+        // Return the result to the delegate object
         self.delegate?.resultFound(result)
     }
 }

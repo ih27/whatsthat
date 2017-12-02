@@ -18,18 +18,14 @@ class PhotoIdentificationViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let manager = GoogleVisionAPIManager()
-    let locationFinder = LocationFinder()
-    
-    // A variable to hold Google Vision API results
     var results = [GoogleVisionLabel]()
+    
+    let locationFinder = LocationFinder()
     var currentLatitude: CLLocationDegrees?
     var currentLongitude: CLLocationDegrees?
     
-    // A variable to pass to Wikipedia API
-    var label = ""
-    
-    // A variable to set the source segue
-    var source = ""
+    var label: String?
+    var source: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +36,7 @@ class PhotoIdentificationViewController: UIViewController {
         // Set the LocationFinder delegate
         locationFinder.delegate = self
         
-        // Set the necessary delegates for the table view
+        // Set the necessary properties for the table view
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -55,12 +51,12 @@ class PhotoIdentificationViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == Constants.photoDetailsId) {
             let vc = segue.destination as! PhotoDetailsViewController
-            vc.wikipediaTerm = label
+            vc.wikipediaTerm = label ?? ""
             vc.photoLatitude = currentLatitude
             vc.photoLongitude = currentLongitude
             
             // Save the image and pass the filename
-            if let data = UIImageJPEGRepresentation(imageView.image!, Constants.compressionQuality) {
+            if let data = UIImageJPEGRepresentation(imageView.image ?? UIImage(), Constants.compressionQuality) {
                 // Create a unique filename
                 let filename = getDocumentsDirectory().appendingPathComponent(UUID().uuidString)
                 try? data.write(to: filename)
@@ -111,6 +107,7 @@ class PhotoIdentificationViewController: UIViewController {
     }
     
     // Present the camera image picker to snap a photo
+    // The location is needed for the favorites map
     private func snapPhoto() {
         // Request location info too for favorites
         locationFinder.findLocation()
@@ -205,12 +202,6 @@ extension PhotoIdentificationViewController: UIImagePickerControllerDelegate, UI
 // Implement table view delegate functions
 extension PhotoIdentificationViewController: UITableViewDataSource, UITableViewDelegate {
     
-    // Disable the section header by setting the height to minimum
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return CGFloat.leastNormalMagnitude
-    }
-    
     // Number of rows in the table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -270,8 +261,7 @@ extension PhotoIdentificationViewController: GoogleVisionDelegate {
             switch reason {
             case .networkRequestFailed:
                 let retryAction = UIAlertAction(title: Constants.retryButtonTitle, style: .default, handler: { action in
-                    // ! won't cause issue here since this happens after initial network request fails
-                    self.fetchResults(for: self.imageView.image!)
+                    self.fetchResults(for: self.imageView.image ?? UIImage())
                 })
                 
                 // Cancel button action

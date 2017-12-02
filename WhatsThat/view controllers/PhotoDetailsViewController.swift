@@ -27,11 +27,11 @@ class PhotoDetailsViewController: UIViewController {
     var iconName = Constants.favoriteImageName
     
     // The term passed from PhotoIdentification view
-    var wikipediaTerm = ""
+    var wikipediaTerm: String?
     
     var wikipediaPageUrl = Constants.wikipediaPageUrl
     
-    // The photo passed from PhotoIdentification view (in case if needed for the favorite thumbnail
+    // The photo filename passed from PhotoIdentification view (in case if needed for the favorite thumbnail
     var filename: URL?
     
     // The coordinates passed from PhotoIdentification view
@@ -45,7 +45,7 @@ class PhotoDetailsViewController: UIViewController {
         manager.delegate = self
         
         // Set the label text
-        idLabel.text = wikipediaTerm.capitalized
+        idLabel.text = wikipediaTerm?.capitalized
         
         // Start a spinner
         let spinner = MBProgressHUD.showAdded(to: self.wikiExtractTextView, animated: true)
@@ -53,11 +53,12 @@ class PhotoDetailsViewController: UIViewController {
         spinner.contentColor = Constants.themeColor
         
         // Get the Wikipedia APi results
-        fetchResults(for: wikipediaTerm)        
+        fetchResults(for: wikipediaTerm ?? "")
         
         // Change the icon based on if it is a favorite
         DispatchQueue.main.async {
-            self.isFavorite = Persistance.sharedInstance.doFavoritesContain(self.wikipediaTerm, self.filename!)
+            self.isFavorite = Persistance.sharedInstance.doFavoritesContain(self.wikipediaTerm ?? "", self.filename ?? URL(fileReferenceLiteralResourceName: "")) // ! would have been better for readability purposes
+            
             if self.isFavorite {
                 self.iconName = Constants.favoriteFilledImageName
             }
@@ -87,12 +88,12 @@ class PhotoDetailsViewController: UIViewController {
     
     // Save the current label and its associated image filename as a favorite
     func saveFavorite(with filename: URL) {
-        Persistance.sharedInstance.saveIdentification(label: wikipediaTerm, filename: filename, latitude: photoLatitude, longitude: photoLongitude)
+        Persistance.sharedInstance.saveIdentification(label: wikipediaTerm ?? "", filename: filename, latitude: photoLatitude, longitude: photoLongitude)
     }
     
     // Delete the current label and its associated image from favorites list
     func deleteFavorite(with filename: URL) {
-        Persistance.sharedInstance.deleteIdentification(wikipediaTerm, filename)
+        Persistance.sharedInstance.deleteIdentification(wikipediaTerm ?? "", filename)
     }
     
     @IBAction func wikiButtonTapped(_ sender: UIButton) {
@@ -100,7 +101,7 @@ class PhotoDetailsViewController: UIViewController {
         if let url = URL(string: wikipediaPageUrl) {
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             // Change the control button colors to match the app theme
-            vc.preferredControlTintColor = UIColor.orange
+            vc.preferredControlTintColor = Constants.themeColor
             present(vc, animated: true)
         }
     }
@@ -108,20 +109,14 @@ class PhotoDetailsViewController: UIViewController {
     @IBAction func tweetsButtonTapped(_ sender: UIButton) {
         
         let vc = SearchTimelineViewController()
-        vc.twitterQuery = wikipediaTerm
+        vc.twitterQuery = wikipediaTerm ?? ""
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
         
         let shareText = wikiExtractTextView?.text
-        
-        // Get the image from the directory to share
-        guard let filename = filename else {
-            return
-        }
-        
-        let shareImage = UIImage(contentsOfFile: filename.path)!
+        let shareImage = UIImage(contentsOfFile: filename?.path ?? "") ?? UIImage()
         
         if let shareText = shareText {
             let vc = UIActivityViewController(activityItems: [shareText, shareImage], applicationActivities: [])
@@ -175,7 +170,7 @@ extension PhotoDetailsViewController: WikipediaDelegate {
             switch reason {
             case .networkRequestFailed:
                 let retryAction = UIAlertAction(title: Constants.retryButtonTitle, style: .default, handler: { action in
-                    self.fetchResults(for: self.wikipediaTerm)
+                    self.fetchResults(for: self.wikipediaTerm ?? "")
                 })
                 
                 // Cancel button action

@@ -14,7 +14,7 @@ import MapKit
 class FavoriteIdentification: NSObject, MKAnnotation {
     let label: String
     let filename: URL
-    let coordinate: CLLocationCoordinate2D
+    let coordinate: CLLocationCoordinate2D // Needed for map annotation
     let latitude: Double?
     let longitude: Double?
 
@@ -39,7 +39,7 @@ class FavoriteIdentification: NSObject, MKAnnotation {
     
     // A computed property for map annotations
     var title: String? {
-        return label
+        return label.capitalized
     }
     
     required init?(coder aDecoder: NSCoder) {

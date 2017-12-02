@@ -13,7 +13,7 @@ class FavoritePhotosTableViewController: UITableViewController {
     var favorites = [FavoriteIdentification]()
     
     // Variables to pass to the details view
-    var detailsLabel = ""
+    var detailsLabel: String?
     var detailsImage = UIImage()
 
     override func viewDidLoad() {

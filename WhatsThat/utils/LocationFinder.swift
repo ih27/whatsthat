@@ -45,6 +45,7 @@ class LocationFinder: NSObject {
     }
 }
 
+// Implement CoreLocation delegate functions
 extension LocationFinder: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first!

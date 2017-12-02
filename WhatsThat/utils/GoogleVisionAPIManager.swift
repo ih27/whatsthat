@@ -24,15 +24,15 @@ class GoogleVisionAPIManager {
     
     var delegate: GoogleVisionDelegate?
     
-    // API related constant. The key only works inside THIS app :-)
-    let apiUrl = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCOVYcFNb7JraAOwQLAmcSCBm-sRu1lAao"
-    
+    // Get the label annotations from Google Vision API
     func fetchIdentifications(for image: UIImage) {
-        let requestURL = URL(string: apiUrl)!
+        let requestURL = URL(string: Constants.googleVisionApiUrl)!
         var urlRequest = URLRequest(url: requestURL)
-        urlRequest.httpMethod = "POST"
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpMethod = Constants.googleVisionApiMethod
+        urlRequest.addValue(Constants.googleVisionApiContentType, forHTTPHeaderField: "Content-Type")
         urlRequest.addValue(Bundle.main.bundleIdentifier ?? "", forHTTPHeaderField: "X-Ios-Bundle-Identifier")
+        
+        // Prepare the request data for given image
         urlRequest.httpBody = prepareJsonRequestData(for: image)
         
         let task = URLSession.shared.dataTask(with: urlRequest) {
@@ -66,17 +66,14 @@ class GoogleVisionAPIManager {
             
         // Results: sorted by score
         if let results = labelResults?.sorted(by: { $0.score > $1.score }) {
-            // Return the results to the conformee
+            // Return the results to the delegate
             self.delegate?.resultsFound(results)
         } else {
-            // Return the results to the conformee
             self.delegate?.resultsNotFound(reason: .noLabelFound)
         }
-        
-        
     }
     
-    // Return the JSON given the image for Cloud Vision API
+    // Return the JSON given the image for Google Vision API
     private func prepareJsonRequestData(for image: UIImage) -> Data? {
         // Prepare json data
         let jsonRequest = [
@@ -99,13 +96,12 @@ class GoogleVisionAPIManager {
     
     // Convert the image to base64 encoded string
     private func base64Encode(_ image: UIImage) -> String {
-        let compressionQuality: CGFloat = 0.7
-        var imageData = UIImageJPEGRepresentation(image, compressionQuality) ?? Data()
+        var imageData = UIImageJPEGRepresentation(image, Constants.compressionQuality) ?? Data()
         
         // Resize the image if it exceeds the 2MB API limit (borrowed from Google Vision API sample)
         if (imageData.count > 2097152) {
-            let oldSize: CGSize = image.size
-            let newSize: CGSize = CGSize(width: 800, height: oldSize.height / oldSize.width * 800)
+            let oldSize = image.size
+            let newSize = CGSize(width: 800, height: oldSize.height / oldSize.width * 800)
             if let imageData = resize(image, to: newSize) {
                 return imageData.base64EncodedString()
             }
@@ -118,9 +114,8 @@ class GoogleVisionAPIManager {
     private func resize(_ image: UIImage, to imageSize: CGSize) -> Data? {
         UIGraphicsBeginImageContext(imageSize)
         image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        let compressionQuality: CGFloat = 0.7
-        let resizedImage = UIImageJPEGRepresentation(newImage!, compressionQuality)
+        guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        let resizedImage = UIImageJPEGRepresentation(newImage, Constants.compressionQuality)
         UIGraphicsEndImageContext()
         return resizedImage
     }

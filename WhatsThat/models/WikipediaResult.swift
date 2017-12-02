@@ -11,7 +11,6 @@ import Foundation
 struct WikipediaResult: Decodable {
     
     let pageid: Int?
-    let ns: Int
     let title: String
     let extract: String?
 }

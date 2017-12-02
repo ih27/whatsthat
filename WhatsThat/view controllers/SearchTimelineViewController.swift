@@ -21,8 +21,7 @@ class SearchTimelineViewController: TWTRTimelineViewController {
         let dataSource = TWTRSearchTimelineDataSource(searchQuery: twitterQuery + Constants.twitterQueryFilter, apiClient: TWTRAPIClient())
         
         // Return only the most popular results in the response.
-        dataSource.resultType = Constants.twitterResultType
-        
+        dataSource.resultType = Constants.twitterResultType        
         // Show Tweet actions
         self.showTweetActions = true
         
