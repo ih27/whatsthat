@@ -14,7 +14,6 @@ class FavoriteView: MKAnnotationView {
     override var annotation: MKAnnotation? {
         willSet {
             guard let favorite = newValue as? FavoriteIdentification else {
-                print("something wrong")
                 return
             }
             canShowCallout = true
@@ -22,24 +21,13 @@ class FavoriteView: MKAnnotationView {
             rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             
             let imageName = favorite.filename.path
-            //image = UIImage(contentsOfFile: imageName)
-            
-            // Resize image
             let pinImage = UIImage(contentsOfFile: imageName)
             
-            let size = CGSize(width: 50.0, height: 50.0)
             // Scale image to fit within specified size while maintaining aspect ratio
+            let size = CGSize(width: 50.0, height: 50.0)
             let aspectScaledToFitImage = pinImage?.af_imageAspectScaled(toFill: size)
+            // Make it a circle
             image = aspectScaledToFitImage?.af_imageRoundedIntoCircle()
-            
-//            let size = CGSize(width: 50, height: 50)
-//            let resizedImage = UIImage.circle(diameter: 20, color: .orange)
-//            UIGraphicsBeginImageContext(size)
-//            pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-//            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-//            UIGraphicsEndImageContext()
-            
-            
         }
     }
 }

@@ -157,6 +157,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="oe0-rD-LVs" id="lGv-4y-rBq"/>
+                        <segue destination="tsc-Iw-OYN" kind="show" identifier="photoDetails" id="Zew-5t-GPC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3F-FQ-jOU" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -39,6 +39,16 @@ class FavoritePhotosMapViewController: UIViewController {
         addMapAnnotations()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == Constants.photoDetailsId) {
+            let vc = segue.destination as! PhotoDetailsViewController
+            let favorite = sender as! FavoriteIdentification
+            
+            vc.wikipediaTerm = favorite.label
+            vc.filename = favorite.filename
+        }
+    }
+    
     // Center the map on a given location for only once
     private func centerMapOnInitialLocation(_ location: CLLocation?) {
         if isInitialLocation {
@@ -50,7 +60,7 @@ class FavoritePhotosMapViewController: UIViewController {
     }
 
     // Add favorited annotations to the map
-    func addMapAnnotations() {
+    private func addMapAnnotations() {
         // Fetch the favorites
         favorites = Persistance.sharedInstance.fetchIdentifications()
         favorites.forEach { favorite in
@@ -67,30 +77,10 @@ extension FavoritePhotosMapViewController: MKMapViewDelegate {
         isInitialLocation = false        
     }
     
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        // 2
-//        guard let annotation = annotation as? FavoriteIdentification else { return nil }
-//        // 3
-//        let identifier = "marker"
-//        if #available(iOS 11.0, *) {
-//            var view: MKMarkerAnnotationView
-//            // 4
-//            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-//                as? MKMarkerAnnotationView {
-//                dequeuedView.annotation = annotation
-//                view = dequeuedView
-//            } else {
-//                // 5
-//                view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//                view.canShowCallout = true
-//                view.calloutOffset = CGPoint(x: -5, y: 5)
-//                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-//            }
-//            return view
-//        } else {
-//            return nil
-//        }
-//    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+        performSegue(withIdentifier: Constants.photoDetailsId, sender: view.annotation)
+    }
 }
 
 // Implement LocationFinder delegate functions
