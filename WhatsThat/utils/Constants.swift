@@ -11,6 +11,7 @@ import UIKit
 
 struct Constants {
     static let themeColor: UIColor = .orange
+    static let timerInterval: TimeInterval = 10
     
     // Identifiers
     static let photoIdentificationId = "photoIdentification"
@@ -45,7 +46,6 @@ struct Constants {
     // Permission messages in alert windows
     static let cameraPermissionsErrorMessage = "You need to turn the Camera access on"
     static let photoLibraryPermissionsErrorMessage = "You need to give \"Read and Write\" access in Photos"
-    static let locationPermissionsErrorMessage = "You need to give \"While Using the App\" access in Location"
     
     // Google Vision API related constants. Note: the key is bound to this app only
     static let googleVisionApiUrl = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCOVYcFNb7JraAOwQLAmcSCBm-sRu1lAao"

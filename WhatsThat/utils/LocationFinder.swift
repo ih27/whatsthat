@@ -11,14 +11,21 @@ import CoreLocation
 
 protocol LocationFinderDelegate {
     func locationFound(latitude: Double, longitude: Double)
-    func locationNotFound()
+    func locationNotFound(reason: LocationFinder.FailureReason)
 }
 
 class LocationFinder: NSObject {
     
+    enum FailureReason: String {
+        case noPermission = "You need to give \"While Using the App\" access in Location"
+        case timeout = "It took too long to get the location."
+        case generic = "Something went wrong with the location services."
+    }
+    
     let locationManager = CLLocationManager()
     
     var delegate: LocationFinderDelegate?
+    var timer = Timer()
     
     override init() {
         super.init()
@@ -28,14 +35,28 @@ class LocationFinder: NSObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     }
     
+    func startTimer() {
+        
+        timer.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: Constants.timerInterval, repeats: false) { timer in
+            //code that will run 10 seconds later
+            self.locationManager.stopUpdatingLocation()
+            self.delegate?.locationNotFound(reason: .timeout)
+        }
+    }
+    
     func findLocation() {
+        
+        // Start the timer
+        startTimer()
+        
         let status = CLLocationManager.authorizationStatus()
         
         switch status {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .denied, .restricted:
-            delegate?.locationNotFound()
+            delegate?.locationNotFound(reason: .noPermission)
         case .authorizedWhenInUse:
             locationManager.requestLocation()
         case .authorizedAlways:
@@ -48,20 +69,26 @@ class LocationFinder: NSObject {
 // Implement CoreLocation delegate functions
 extension LocationFinder: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        timer.invalidate()
+        manager.stopUpdatingLocation()
+        
         let location = locations.first!
         delegate?.locationFound(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
         if status == .authorizedWhenInUse {
             locationManager.requestLocation()
         } else {
-            delegate?.locationNotFound()
+            delegate?.locationNotFound(reason: .noPermission)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
-        delegate?.locationNotFound()
+        
+        timer.invalidate()
+        delegate?.locationNotFound(reason: .generic)
     }
 }

@@ -92,43 +92,47 @@ extension FavoritePhotosMapViewController: LocationFinderDelegate {
         // Do nothing here. Map view itself handles the location
     }
     
-    func locationNotFound() {
-        // Display an alert
-        displayPermissionAlert(with: Constants.locationPermissionsErrorMessage)
-    }
-    
-    // Display an alert trying to direct users to Settings
-    private func displayPermissionAlert(with message: String) {
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        // Setting button action
-        let settingsAction = UIAlertAction(title: Constants.settingsButtonAlertTitle, style: .default) { action in
-            // Get the app settings url
-            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
-                return
+    func locationNotFound(reason: LocationFinder.FailureReason) {
+        // Run in the main thread
+        DispatchQueue.main.async {
+            
+            let ac = UIAlertController(title: self.title, message: reason.rawValue, preferredStyle: .alert)
+            
+            switch reason {
+            case .generic, .timeout:
+                
+                // Cancel button action
+                let cancelAction = UIAlertAction(title: Constants.cancelButtonTitle, style: .default)
+                
+                ac.addAction(cancelAction)
+                
+            case .noPermission:
+                // Setting button action
+                let settingsAction = UIAlertAction(title: Constants.settingsButtonAlertTitle, style: .default) { action in
+                    // Get the app settings url
+                    guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                        return
+                    }
+                    
+                    // Try to open the app settings url
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: nil)
+                    } else {
+                        return
+                    }
+                }
+                
+                // OK button action
+                let okAction = UIAlertAction(title: Constants.okButtonTitle, style: .default, handler: { action in
+                    self.navigationController?.popViewController(animated: true)
+                })
+                
+                ac.addAction(settingsAction)
+                ac.addAction(okAction)
             }
             
-            // Try to open the app settings url
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: nil)
-            } else {
-                return
-            }
-            
-            // If the settings change, iOS kills the app. So, we have to dismiss the view in case the user returns without changing the permissions
-            self.navigationController?.popViewController(animated: true)
+            // Present the alert
+            self.present(ac, animated: true)
         }
-        
-        // Cancel button action
-        let cancelAction = UIAlertAction(title: Constants.cancelButtonTitle, style: .default){ action in
-            self.navigationController?.popViewController(animated: true)
-        }
-        
-        // Add the actions
-        ac.addAction(settingsAction)
-        ac.addAction(cancelAction)
-        
-        // Present the alert
-        present(ac, animated: true)
     }
 }
