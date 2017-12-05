@@ -35,9 +35,9 @@ class LocationFinder: NSObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     }
     
-    func startTimer() {
+    private func startTimer() {
         
-        timer.invalidate()
+        cancelTimer()
         timer = Timer.scheduledTimer(withTimeInterval: Constants.timerInterval, repeats: false) { timer in
             //code that will run 10 seconds later
             self.locationManager.stopUpdatingLocation()
@@ -45,10 +45,11 @@ class LocationFinder: NSObject {
         }
     }
     
+    private func cancelTimer() {
+        timer.invalidate()
+    }
+    
     func findLocation() {
-        
-        // Start the timer
-        startTimer()
         
         let status = CLLocationManager.authorizationStatus()
         
@@ -58,6 +59,7 @@ class LocationFinder: NSObject {
         case .denied, .restricted:
             delegate?.locationNotFound(reason: .noPermission)
         case .authorizedWhenInUse:
+            startTimer()
             locationManager.requestLocation()
         case .authorizedAlways:
             // do nothing, irrelevant
@@ -70,7 +72,7 @@ class LocationFinder: NSObject {
 extension LocationFinder: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        timer.invalidate()
+        cancelTimer()
         manager.stopUpdatingLocation()
         
         let location = locations.first!
@@ -80,6 +82,7 @@ extension LocationFinder: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         if status == .authorizedWhenInUse {
+            startTimer()
             locationManager.requestLocation()
         } else {
             delegate?.locationNotFound(reason: .noPermission)
@@ -88,7 +91,7 @@ extension LocationFinder: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
-        timer.invalidate()
+        cancelTimer()
         delegate?.locationNotFound(reason: .generic)
     }
 }
