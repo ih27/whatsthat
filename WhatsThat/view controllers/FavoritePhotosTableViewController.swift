@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class FavoritePhotosTableViewController: UITableViewController {
     
@@ -55,10 +56,8 @@ class FavoritePhotosTableViewController: UITableViewController {
         cell.favoriteLabel.text =
         "\(favorite.label)"
         
-        // Set the thumbnail image
-        DispatchQueue.main.async {
-            cell.favoriteImageView.image = UIImage(contentsOfFile: favorite.filename.path)
-        }
+        // Set the thumbnail image in the background thread
+        cell.favoriteImageView.af_setImage(withURL: favorite.filename, placeholderImage: nil, filter: CircleFilter(), progress: nil, progressQueue: .main, imageTransition: .flipFromRight(2), runImageTransitionIfCached: false, completion: nil)
         
         return cell
     }
