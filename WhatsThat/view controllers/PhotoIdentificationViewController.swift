@@ -69,14 +69,13 @@ class PhotoIdentificationViewController: UIViewController {
     
     // Camera access request
     private func requestCameraPermissionsIfNeeded() {
-        let cameraMediaType = AVMediaType.video
-        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: cameraMediaType)
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: Constants.cameraMediaType)
         if cameraAuthorizationStatus == .authorized {
             // Access is granted by user
             snapPhoto()
         } else {
             // Access is still not granted
-            AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+            AVCaptureDevice.requestAccess(for: Constants.cameraMediaType) { response in
                 if response {
                     // Access is granted by user
                     self.snapPhoto()
@@ -96,7 +95,7 @@ class PhotoIdentificationViewController: UIViewController {
             selectPhotoFromLibrary()
         } else {
             // Access is still not granted
-            PHPhotoLibrary.requestAuthorization({ (status) in
+            PHPhotoLibrary.requestAuthorization { status in
                 if status == .authorized {
                     // Access is granted by user
                     self.selectPhotoFromLibrary()
@@ -104,7 +103,7 @@ class PhotoIdentificationViewController: UIViewController {
                     // User needs to be directed to the app settings
                     self.displayPermissionAlert(with: Constants.photoLibraryPermissionsErrorMessage)
                 }
-            })
+            }
         }
     }
     

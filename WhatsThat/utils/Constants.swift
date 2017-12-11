@@ -6,7 +6,7 @@
 //  Copyright © 2017 GWU. All rights reserved.
 //
 
-import Foundation
+import AVFoundation
 import UIKit
 
 struct Constants {
@@ -39,6 +39,7 @@ struct Constants {
     // Photo source
     static let cameraSource = "Camera"
     static let photoLibrarySource = "Photo Library"
+    static let cameraMediaType = AVMediaType.video
     
     // Compression quality for image representation throughout
     static let compressionQuality: CGFloat = 0.7
