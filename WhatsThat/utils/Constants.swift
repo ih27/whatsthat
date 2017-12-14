@@ -48,8 +48,9 @@ struct Constants {
     static let cameraPermissionsErrorMessage = "You need to turn the Camera access on"
     static let photoLibraryPermissionsErrorMessage = "You need to give \"Read and Write\" access in Photos"
     
-    // Google Vision API related constants. Note: the key is bound to this app only
-    static let googleVisionApiUrl = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCOVYcFNb7JraAOwQLAmcSCBm-sRu1lAao"
+    // Google Vision API related constants.
+    // ADD your key to URL
+    static let googleVisionApiUrl = "https://vision.googleapis.com/v1/images:annotate?key=YOUR-KEY-HERE"
     static let googleVisionApiMethod = "POST"
     static let googleVisionApiContentType = "application/json"
     
@@ -58,8 +59,9 @@ struct Constants {
     static let wikipediaPageUrl = "https://en.wikipedia.org/?curid="
     
     // Twitter API related constants
-    static let twitterKey = "Zct4IihPMR8S3MOWmzVt7DDge"
-    static let twitterSecret = "BTQYjbwBL99Rx6VRrNL4wQ6jkxYksqh6ZIaRZji26hIKjEGox6"
+    // ADD your Twitter key/secret
+    static let twitterKey = "YOUR-KEY-HERE"
+    static let twitterSecret = "YOUR-SECRET-HERE"
     static let twitterResultType = "popular"
     static let twitterQueryFilter = " filter:media"
 }
